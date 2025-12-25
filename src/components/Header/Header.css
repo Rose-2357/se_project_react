@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.header__column {
+  display: flex;
+  align-items: center;
+}
+
+.header__img-wrapper {
+  margin: 0;
+}
+
+.header__img-wrapper_type_logo {
+  margin-right: 24px;
+}
+
+.header__text {
+  margin: 0;
+}
+
+.header__text_type_username {
+  margin: 0 88px 0 20px;
+}
+
+.header__btn {
+  background-color: transparent;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
