@@ -14,7 +14,16 @@
 }
 
 .header__img-wrapper_type_logo {
+  width: 89px;
   margin-right: 24px;
+}
+
+.header__img-wrapper_type_profile {
+  width: 40;
+}
+
+.header__img {
+  width: 100%;
 }
 
 .header__text {
