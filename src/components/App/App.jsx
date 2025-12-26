@@ -4,6 +4,7 @@ import { getData as getWeatherData } from "../../utils/weatherApi";
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
 import { defaultClothingItems } from "../../utils/constants";
+import Footer from "../Footer/Footer";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -34,6 +35,7 @@ function App() {
           sunrise={weatherData.sunrise}
           sunset={weatherData.sunset}
         />
+        <Footer />
       </div>
     </div>
   );
