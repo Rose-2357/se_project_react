@@ -1,5 +1,5 @@
 import "./WeatherCard.css";
-import weatherCardImages from "../../utils/weatherCardImages";
+import { weatherCardImages } from "../../utils/constants";
 
 export default function WeatherCard({ temp, weather }) {
   const currentTime = new Date().getHours();
