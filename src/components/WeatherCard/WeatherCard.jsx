@@ -1,9 +1,9 @@
 import "./WeatherCard.css";
 import { weatherCardImages } from "../../utils/constants";
 
-export default function WeatherCard({ temp, weather }) {
-  const currentTime = new Date().getHours();
-  const isDay = 6 < currentTime && currentTime < 18;
+export default function WeatherCard({ temp, weather, sunrise, sunset }) {
+  const currentTime = Date.now() / 1000;
+  const isDay = sunrise < currentTime && currentTime < sunset;
 
   function getCardImageData(isDay, weather) {
     if (weather === "Drizzle") weather = "Rain";

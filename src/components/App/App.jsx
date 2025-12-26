@@ -31,6 +31,8 @@ function App() {
           itemCards={itemCards}
           weather={weatherData.weather}
           temp={weatherData.temp}
+          sunrise={weatherData.sunrise}
+          sunset={weatherData.sunset}
         />
       </div>
     </div>
