@@ -1,0 +1,10 @@
+.itemCards {
+  list-style-type: none;
+  margin: 0 auto;
+  display: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, 325px);
+  justify-content: center;
+}

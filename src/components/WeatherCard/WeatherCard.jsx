@@ -25,7 +25,7 @@ export default function WeatherCard({ temp, weather }) {
           alt={imageData.alt}
         />
       </figure>
-      <p className="weather-card__temp">{Math.round(temp)}°F</p>
+      <p className="weather-card__temp">{temp}°F</p>
     </div>
   );
 }

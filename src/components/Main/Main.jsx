@@ -1,9 +1,16 @@
+import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
+import "./Main.css";
+import "./ItemCards.css";
 
-export default function Main({ temp, weather }) {
+export default function Main({ itemCards, temp, weather }) {
   return (
     <main className="main">
-      <WeatherCard weather={weather} temp={temp} />;
+      <WeatherCard weather={weather} temp={temp} />
+      <p className="main__text">Today is {temp}° F / You may want to wear:</p>
+      <ul className="itemCards">
+        <ItemCard itemCards={itemCards} />
+      </ul>
     </main>
   );
 }

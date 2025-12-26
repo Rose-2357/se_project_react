@@ -3,9 +3,11 @@ import Header from "../Header/Header";
 import { getData as getWeatherData } from "../../utils/weatherApi";
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
+  const [itemCards, setItemCards] = useState(defaultClothingItems);
 
   useEffect(() => {
     getWeatherData()
@@ -25,7 +27,11 @@ function App() {
     <div className="app">
       <div className="app__content">
         <Header city={weatherData.city} />
-        <Main weather={weatherData.weather} temp={weatherData.temp} />
+        <Main
+          itemCards={itemCards}
+          weather={weatherData.weather}
+          temp={weatherData.temp}
+        />
       </div>
     </div>
   );
