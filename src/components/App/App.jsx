@@ -23,8 +23,10 @@ function App() {
 
   return (
     <div className="app">
-      <Header city={weatherData.city} />
-      <Main weather={weatherData.weather} temp={weatherData.temp} />
+      <div className="app__content">
+        <Header city={weatherData.city} />
+        <Main weather={weatherData.weather} temp={weatherData.temp} />
+      </div>
     </div>
   );
 }
