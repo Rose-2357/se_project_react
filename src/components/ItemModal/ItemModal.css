@@ -17,6 +17,7 @@
 .ItemModal__content {
   background-color: #fff;
   max-width: fit-content;
+  min-width: 300px;
   width: 500px;
   position: relative;
   border-radius: 16px;
@@ -47,16 +48,38 @@
   opacity: 1;
 }
 
+.ItemModal__img-container {
+  position: relative;
+}
+
 .ItemModal__img-wrapper {
   margin: 0;
   margin-bottom: 20px;
   width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ItemModal__img-wrapper_effect_blur {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .ItemModal__img {
   width: 100%;
-  max-height: 50vh;
+  max-height: calc(100vh - 200px);
   object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.ItemModal__img_effect_blur {
+  object-fit: cover;
+  background-color: #000;
+  z-index: 0;
+  filter: blur(6px);
 }
 
 .ItemModal__text {
