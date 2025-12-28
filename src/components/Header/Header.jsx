@@ -2,7 +2,7 @@ import "./Header.css";
 import HeaderLogo from "../../assets/logo.svg";
 import HeaderProfileImg from "../../assets/profile-img.svg";
 
-export default function Header({ city }) {
+export default function Header({ city, handleOpenModal }) {
   const currentDate = new Date().toLocaleDateString("default", {
     month: "long",
     day: "numeric",
@@ -16,7 +16,9 @@ export default function Header({ city }) {
         <p className="header__text">{`${currentDate}, ${city}`}</p>
       </div>
       <div className="header__column">
-        <button className="header__btn">+ Add clothes</button>
+        <button className="header__btn" onClick={handleOpenModal}>
+          + Add clothes
+        </button>
         <p className="header__text header__text_type_username">
           Terrence Tegegne
         </p>

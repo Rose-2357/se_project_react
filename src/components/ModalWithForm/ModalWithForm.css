@@ -1,0 +1,158 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #0005;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.3s, opacity 0.3s ease;
+}
+
+.modal_is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  padding: 2px 28px 0;
+  background-color: #fff;
+  border: 1px solid #0000004d;
+  border-radius: 20px;
+  width: 496px;
+  max-width: 100%;
+}
+
+.modal__text {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0;
+  margin-top: 24px;
+}
+
+.modal__text_state_error {
+  color: #ff4d00;
+}
+
+.modal__text_state_error + .modal__input_type_text {
+  color: #ff4d00;
+  border-color: #ff4d00;
+}
+
+.modal__text_type_legend {
+  margin-bottom: 12px;
+}
+
+.modal__text_type_radio-label {
+  margin: 0;
+  opacity: 0.5;
+}
+
+.modal__close-btn {
+  background-image: url(../../assets/close-btn.svg);
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__close-btn:hover {
+  opacity: 1;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input_type_text {
+  width: 100%;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+
+.modal__fieldset {
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 8px;
+}
+
+.modal__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal__input_type_radio {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.modal__radio-input-clone {
+  background-image: url(../../assets/radio-btn.svg);
+  background-repeat: repeat;
+  width: 16px;
+  height: 16px;
+  opacity: 1;
+  display: block;
+}
+
+.modal__input_type_radio:checked + .modal__radio-input-clone {
+  background-image: url(../../assets/radio-btn-selected.svg);
+}
+
+.modal__input_type_radio:focus + .modal__radio-input-clone {
+  outline: 1px groove #555;
+  border-radius: 50%;
+}
+
+.modal__input_type_radio:checked ~ .modal__text_type_radio-label {
+  opacity: 1;
+}
+
+.modal__submit-btn {
+  margin: 32px 0 36px;
+  border: none;
+  width: 124px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  background-color: #000000;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.6;
+}
+
+.modal__submit-btn_disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.modal__submit-btn_disabled:hover {
+  opacity: 0.3;
+}
