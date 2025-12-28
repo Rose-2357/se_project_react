@@ -5,7 +5,6 @@ export default function ItemModal({ card, isOpen, handleCloseModal }) {
 
   function handleMouseDown(e) {
     const shouldClose = ["ItemModal", "ItemModal__close-btn"];
-    console.log(e.target);
     if (
       shouldClose.some((item) => Array.from(e.target.classList).includes(item))
     )
