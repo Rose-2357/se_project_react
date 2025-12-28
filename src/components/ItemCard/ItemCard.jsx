@@ -7,7 +7,7 @@ export default function ItemCard({ itemCards, handleCardClick }) {
       className="itemCard"
       data-name={item.name}
       data-link={item.link}
-      data-weather={item.weatherType}
+      data-weather={item.weather}
     >
       <p className="itemCard__name">{item.name}</p>
       <figure className="itemCard__img-wrapper">

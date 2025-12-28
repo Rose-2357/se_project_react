@@ -39,7 +39,7 @@ function App() {
       _id: itemCards[itemCards.length - 1]._id + 1,
       name: e.target.name.value,
       link: e.target.image.value,
-      weatherType: e.target["weather-type"].value,
+      weather: e.target["weather-type"].value,
     };
 
     setItemCards([...itemCards, newItem]);
