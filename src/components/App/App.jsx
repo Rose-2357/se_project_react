@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "../Header/Header";
-import { getData as getWeatherData } from "../../utils/weatherApi";
+import { getWeatherCondition, getWeatherData } from "../../utils/weatherApi";
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
 import { defaultClothingItems } from "../../utils/constants";
@@ -24,6 +24,9 @@ function App() {
     message: "",
   });
   const [selectedCard, setSelectedCard] = useState();
+  const [weatherCondition, setWeatherCondition] = useState(
+    getWeatherCondition(weatherData.temp)
+  );
 
   function handleOpenAddClothesModal() {
     setActiveModal("addClothes");
@@ -76,6 +79,10 @@ function App() {
       );
   }, []);
 
+  useEffect(() => {
+    setWeatherCondition(getWeatherCondition(weatherData.temp));
+  }, [weatherData.temp]);
+
   return (
     <div className="app" onKeyDown={activeModal !== "" ? handleKeyDown : null}>
       <div className="app__content">
@@ -90,6 +97,7 @@ function App() {
           sunrise={weatherData.sunrise}
           sunset={weatherData.sunset}
           handleCardClick={handleCardClick}
+          weatherCondition={weatherCondition}
         />
         <Footer />
         <ModalWithForm

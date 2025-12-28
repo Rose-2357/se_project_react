@@ -10,6 +10,7 @@ export default function Main({
   sunrise,
   sunset,
   handleCardClick,
+  weatherCondition,
 }) {
   return (
     <main className="main">
@@ -21,7 +22,7 @@ export default function Main({
       />
       <p className="main__text">Today is {temp}° F / You may want to wear:</p>
       <ul className="itemCards" onClick={handleCardClick}>
-        <ItemCard itemCards={itemCards} handleCardClick={handleCardClick} />
+        <ItemCard itemCards={itemCards} weatherCondition={weatherCondition} />
       </ul>
     </main>
   );

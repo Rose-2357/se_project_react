@@ -1,12 +1,10 @@
 import { apiKeey, latitude, longitude } from "./constants";
 
-let randomNum = 0;
+export function getWeatherCondition(temp) {
+  return temp >= 86 ? "hot" : temp >= 66 ? "warm" : "cold";
+}
 
-document.addEventListener("click", () => {
-  randomNum = Math.floor(Math.random() * 10);
-});
-
-export function getData() {
+export function getWeatherData() {
   // return fetch(
   //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKeey}`
   // )
