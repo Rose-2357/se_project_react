@@ -83,8 +83,10 @@ function App() {
     setWeatherCondition(getWeatherCondition(weatherData.temp));
   }, [weatherData.temp]);
 
+  document.onkeydown = activeModal !== "" ? handleKeyDown : null;
+
   return (
-    <div className="app" onKeyDown={activeModal !== "" ? handleKeyDown : null}>
+    <div className="app">
       <div className="app__content">
         <Header
           city={weatherData.city}
