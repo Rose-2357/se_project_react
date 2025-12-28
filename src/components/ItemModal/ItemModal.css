@@ -16,8 +16,12 @@
 
 .ItemModal__content {
   background-color: #fff;
-  max-width: 100%;
+  max-width: fit-content;
   width: 500px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 16px;
 }
 
 .ItemModal_is-open {
@@ -39,13 +43,6 @@
   transition: opacity 0.2s ease;
 }
 
-.ItemModal__content {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  margin: 16px;
-}
-
 .ItemModal__close-btn:hover {
   opacity: 1;
 }
@@ -58,6 +55,8 @@
 
 .ItemModal__img {
   width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .ItemModal__text {
