@@ -152,6 +152,7 @@ function App() {
             </div>
             <div className="modal__option">
               <input
+                value="warm"
                 className="modal__input modal__input_type_radio"
                 type="radio"
                 name="weather-type"
@@ -167,6 +168,7 @@ function App() {
             </div>
             <div className="modal__option">
               <input
+                value="cold"
                 className="modal__input modal__input_type_radio"
                 type="radio"
                 name="weather-type"
