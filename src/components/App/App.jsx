@@ -11,6 +11,7 @@ import {
   checkValidity,
   displayValid,
 } from "../../utils/validation";
+import ItemModal from "../ItemModal/ItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -22,6 +23,7 @@ function App() {
     error: true,
     message: "",
   });
+  const [selectedCard, setSelectedCard] = useState();
 
   function handleOpenAddClothesModal() {
     setActiveModal("addClothes");
@@ -45,6 +47,21 @@ function App() {
     handleCloseModal();
   }
 
+  function handleCardClick(e) {
+    const itemCard = e.target.closest(".itemCard");
+    if (!itemCard) return;
+    setActiveModal("itemCard");
+    setSelectedCard({
+      name: itemCard.getAttribute("data-name"),
+      link: itemCard.getAttribute("data-link"),
+      weather: itemCard.getAttribute("data-weather"),
+    });
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Escape") handleCloseModal();
+  }
+
   useEffect(() => {
     getWeatherData()
       .then((data) => {
@@ -60,7 +77,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app" onKeyDown={activeModal !== "" ? handleKeyDown : null}>
       <div className="app__content">
         <Header
           city={weatherData.city}
@@ -72,6 +89,7 @@ function App() {
           temp={weatherData.temp}
           sunrise={weatherData.sunrise}
           sunset={weatherData.sunset}
+          handleCardClick={handleCardClick}
         />
         <Footer />
         <ModalWithForm
@@ -184,6 +202,11 @@ function App() {
             </div>
           </fieldset>
         </ModalWithForm>
+        <ItemModal
+          card={selectedCard}
+          isOpen={activeModal === "itemCard"}
+          handleCloseModal={handleCloseModal}
+        />
       </div>
     </div>
   );

@@ -3,7 +3,14 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import "./Main.css";
 import "./ItemCards.css";
 
-export default function Main({ itemCards, temp, weather, sunrise, sunset }) {
+export default function Main({
+  itemCards,
+  temp,
+  weather,
+  sunrise,
+  sunset,
+  handleCardClick,
+}) {
   return (
     <main className="main">
       <WeatherCard
@@ -13,8 +20,8 @@ export default function Main({ itemCards, temp, weather, sunrise, sunset }) {
         sunset={sunset}
       />
       <p className="main__text">Today is {temp}° F / You may want to wear:</p>
-      <ul className="itemCards">
-        <ItemCard itemCards={itemCards} />
+      <ul className="itemCards" onClick={handleCardClick}>
+        <ItemCard itemCards={itemCards} handleCardClick={handleCardClick} />
       </ul>
     </main>
   );
