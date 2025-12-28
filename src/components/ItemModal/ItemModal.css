@@ -41,6 +41,7 @@
   right: 24px;
   opacity: 0.3;
   cursor: pointer;
+  z-index: 2;
   transition: opacity 0.2s ease;
 }
 
