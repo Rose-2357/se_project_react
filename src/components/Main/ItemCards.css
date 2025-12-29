@@ -8,3 +8,16 @@
   grid-template-columns: repeat(auto-fit, 325px);
   justify-content: center;
 }
+
+@media screen and (max-width: 800px) {
+  .itemCards {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 245px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .itemCards {
+    grid-template-columns: repeat(auto-fit, 164px);
+  }
+}

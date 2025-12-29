@@ -4,7 +4,6 @@
 }
 
 .app__content {
-  box-sizing: border-box;
   margin: 0 auto;
   padding: 32px 16px 0;
   max-width: 1360px;
