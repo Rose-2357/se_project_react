@@ -10,7 +10,11 @@ export default function Header({ city, handleOpenModal }) {
     day: "numeric",
   });
 
-  const [isMenuOpen, setIsmenuOpen] = useState(false);
+  const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false);
+
+  function toggleMobileMenu() {
+    setisMobileMenuOpen(!isMobileMenuOpen);
+  }
 
   return (
     <header className="header">
@@ -31,16 +35,13 @@ export default function Header({ city, handleOpenModal }) {
           <img src={HeaderProfileImg} alt="" className="header__img" />
         </figure>
       </div>
-      <button
-        className="header__menu-btn"
-        onClick={() => setIsmenuOpen(true)}
-      ></button>
-      <div className={`menu ${isMenuOpen ? "menu_is-open" : ""}`}>
+      <button className="header__menu-btn" onClick={toggleMobileMenu}></button>
+      <div className={`menu ${isMobileMenuOpen ? "menu_is-open" : ""}`}>
         <div className="menu__content">
           <button
             type="button"
             className="menu__btn menu__btn_type_close"
-            onClick={() => setIsmenuOpen(false)}
+            onClick={toggleMobileMenu}
           ></button>
           <div className="menu__profile-info">
             <p className="menu__text">Terrence Tegegne</p>
