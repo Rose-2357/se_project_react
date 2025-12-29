@@ -3,7 +3,13 @@
 }
 
 .main__text {
-  margin: 40px 0 34px 0;
+  margin: 40px 0 34px;
   font-weight: 700;
   font-size: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .main__text {
+    margin: 32px 0 16px;
+  }
 }
