@@ -7,3 +7,10 @@
   font-weight: 500;
   font-size: 16px;
 }
+
+@media screen and (max-width: 800px) {
+  .footer {
+    margin-top: 147px;
+    padding-bottom: 20px;
+  }
+}
