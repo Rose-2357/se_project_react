@@ -27,3 +27,9 @@
   position: absolute;
   left: 16px;
 }
+
+@media screen and (max-width: 500px) {
+  .weather-card {
+    padding-top: 16px;
+  }
+}
