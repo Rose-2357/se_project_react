@@ -1,0 +1,68 @@
+.menu {
+  position: fixed;
+  box-sizing: border-box;
+  padding: 0 16px;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  transform: translateX(calc(min(100%, 500px) - 16px));
+  transition: transform 0.4s ease-in;
+}
+
+.menu__content {
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 60px 16px;
+}
+
+.menu__btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu__btn_type_close {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  background-image: url(../../assets/close-btn.svg);
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  align-self: end;
+}
+
+.menu__profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.menu__text {
+  margin: 0;
+}
+
+.menu__img-wrapper {
+  margin: 0;
+}
+
+.menu__btn_type_add-clothes {
+  width: fit-content;
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .menu_is-open {
+    transform: translateX(0);
+  }
+}
