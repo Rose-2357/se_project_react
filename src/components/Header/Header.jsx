@@ -16,6 +16,8 @@ export default function Header({ city, handleOpenModal }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  const username = "Terrence Tegegne";
+
   return (
     <header className="header">
       <div className="header__column header__column_position_left">
@@ -28,11 +30,13 @@ export default function Header({ city, handleOpenModal }) {
         <button className="header__add-clothes-btn" onClick={handleOpenModal}>
           + Add clothes
         </button>
-        <p className="header__text header__text_type_username">
-          Terrence Tegegne
-        </p>
+        <p className="header__text header__text_type_username">{username}</p>
         <figure className="header__img-wrapper header__img-wrapper_type_profile">
-          <img src={HeaderProfileImg} alt="" className="header__img" />
+          <img
+            src={HeaderProfileImg}
+            alt={`${username}'s profile picture`}
+            className="header__img"
+          />
         </figure>
       </div>
       <button className="header__menu-btn" onClick={toggleMobileMenu}></button>
@@ -44,9 +48,13 @@ export default function Header({ city, handleOpenModal }) {
             onClick={toggleMobileMenu}
           ></button>
           <div className="menu__profile-info">
-            <p className="menu__text">Terrence Tegegne</p>
+            <p className="menu__text">{username}</p>
             <figure className="menu__img-wrapper">
-              <img src={HeaderProfileImg} alt="" className="menu__img" />
+              <img
+                src={HeaderProfileImg}
+                alt={`${username}'s profile picture`}
+                className="menu__img"
+              />
             </figure>
           </div>
           <button
