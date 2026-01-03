@@ -85,6 +85,8 @@ function App() {
 
   document.onkeydown = activeModal !== "" ? handleKeyDown : null;
 
+  if (Object.keys(weatherData).length === 0) return null;
+
   return (
     <div className="app">
       <div className="app__content">
