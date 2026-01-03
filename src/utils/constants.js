@@ -31,7 +31,7 @@ export const weatherCardImages = {
   },
 };
 
-export const apiKeey = "1125eb6732b0a503a712b9010ee97a61";
+export const apiKey = "1125eb6732b0a503a712b9010ee97a61";
 export const latitude = `32.91`;
 export const longitude = `-96.62`;
 
@@ -99,7 +99,7 @@ export const defaultClothingItems = [
   {
     _id: 11,
     name: "Shorts",
-    weather: "Hot",
+    weather: "hot",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba",
   },
   {
