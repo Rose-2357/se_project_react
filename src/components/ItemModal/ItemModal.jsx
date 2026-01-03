@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 
 export default function ItemModal({ card, isOpen, handleCloseModal }) {
-  if (!card) return;
+  if (!card) return null;
 
   function handleMouseDown(e) {
     const shouldClose = ["ItemModal", "ItemModal__close-btn"];
