@@ -22,7 +22,9 @@ A web application that suggests clothisg based on the weather
 
 ![Screenshot of item modal](./demo/item-modal.png)
 
-A demo video of your project (highly recommended)
+# Demo Video
+
+[See on YouTube](https://youtu.be/FjNwaREWMWo)
 
 # GitHib pages
 
