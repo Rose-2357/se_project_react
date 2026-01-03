@@ -10,10 +10,10 @@ export default function Header({ city, handleOpenModal }) {
     day: "numeric",
   });
 
-  const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   function toggleMobileMenu() {
-    setisMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
   return (
