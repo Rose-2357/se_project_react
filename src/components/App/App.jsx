@@ -61,10 +61,6 @@ function App() {
     });
   }
 
-  function handleKeyDown(e) {
-    if (e.key === "Escape") handleCloseModal();
-  }
-
   useEffect(() => {
     getWeatherData()
       .then((data) => {
@@ -80,10 +76,22 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!activeModal) return;
+
+    function handleKeyDown(e) {
+      if (e.key === "Escape") handleCloseModal();
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeModal]);
+
+  useEffect(() => {
     setWeatherCondition(getWeatherCondition(weatherData.temp));
   }, [weatherData.temp]);
-
-  document.onkeydown = activeModal !== "" ? handleKeyDown : null;
 
   if (Object.keys(weatherData).length === 0) return null;
 
