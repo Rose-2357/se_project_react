@@ -1,10 +1,9 @@
 import { getWeatherCondition } from "../../utils/weatherApi";
 import "./ItemCard.css";
 
-export default function ItemCard({ itemCards, weatherCondition }) {
-  return itemCards.toReversed().map((item) => (
+export default function ItemCard({ item, weatherCondition }) {
+  return (
     <li
-      key={item._id}
       className="itemCard"
       data-name={item.name}
       data-link={item.link}
@@ -18,5 +17,5 @@ export default function ItemCard({ itemCards, weatherCondition }) {
         <img src={item.link} alt={item.name} className="itemCard__img" />
       </figure>
     </li>
-  ));
+  );
 }
