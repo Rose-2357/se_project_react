@@ -76,20 +76,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!activeModal) return;
-
-    function handleKeyDown(e) {
-      if (e.key === "Escape") handleCloseModal();
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [activeModal]);
-
-  useEffect(() => {
     setWeatherCondition(getWeatherCondition(weatherData.temp));
   }, [weatherData.temp]);
 

@@ -1,3 +1,4 @@
+import useModalClose from "../../hooks/useModalClose";
 import "./ModalWithForm.css";
 import { useEffect, useState } from "react";
 
@@ -21,22 +22,19 @@ export default function ModalWithForm({
     if (!(isAnyInputInvalid || isFormValid)) setIsFormValid(true);
   }, validationDependencies);
 
-  function handleMouseDown(e) {
-    const shouldClose = ["modal", "modal__close-btn"];
-    if (
-      shouldClose.some((item) => Array.from(e.target.classList).includes(item))
-    )
-      handleCloseModal();
-  }
+  useModalClose(isOpen, handleCloseModal, "modal");
 
   return (
     <div
       className={`modal modal_type_${name} ${isOpen ? "modal_is-open" : ""}`}
-      onMouseDown={handleMouseDown}
     >
       <div className="modal__content">
         <h2 className="modal__text modal__text_type_title">{title}</h2>
-        <button className="modal__close-btn" type="button" />
+        <button
+          className="modal__close-btn"
+          type="button"
+          onClick={handleCloseModal}
+        />
         <form name={name} className="modal__form" onSubmit={handleSubmit}>
           {children}
           <button
