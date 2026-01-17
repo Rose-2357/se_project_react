@@ -32,10 +32,11 @@
 }
 
 .header__text_type_username {
-  margin: 0 88px 0 20px;
+  margin: 0 88px 0 0px;
 }
 
 .header__add-clothes-btn {
+  margin: 0 20px;
   background-color: transparent;
   font-weight: 700;
   border: none;

@@ -2,7 +2,8 @@ import "./Header.css";
 import "./menu.css";
 import HeaderLogo from "../../assets/logo.svg";
 import HeaderProfileImg from "../../assets/profile-img.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 export default function Header({ city, handleOpenModal }) {
   const currentDate = new Date().toLocaleDateString("default", {
@@ -27,6 +28,7 @@ export default function Header({ city, handleOpenModal }) {
         <p className="header__text">{`${currentDate}, ${city}`}</p>
       </div>
       <div className="header__column header__column_position_right">
+        <ToggleSwitch />
         <button className="header__add-clothes-btn" onClick={handleOpenModal}>
           + Add clothes
         </button>

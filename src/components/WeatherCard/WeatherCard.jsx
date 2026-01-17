@@ -1,7 +1,13 @@
 import "./WeatherCard.css";
 import { weatherCardImages } from "../../utils/constants";
 
-export default function WeatherCard({ temp, weather, sunrise, sunset }) {
+export default function WeatherCard({
+  temp,
+  tempUnit,
+  weather,
+  sunrise,
+  sunset,
+}) {
   const currentTime = Date.now() / 1000;
   const isDay = sunrise < currentTime && currentTime < sunset;
 
@@ -25,7 +31,9 @@ export default function WeatherCard({ temp, weather, sunrise, sunset }) {
           alt={imageData.alt}
         />
       </figure>
-      <p className="weather-card__temp">{temp}°F</p>
+      <p className="weather-card__temp">
+        {temp}°{tempUnit}
+      </p>
     </div>
   );
 }
