@@ -55,7 +55,7 @@
   transition-duration: 0.2s;
 }
 
-.switch__checkbox:active ~ .switch__label .switch__btn {
+.switch__checkbox_active ~ .switch__label .switch__btn {
   width: 34px;
 }
 

@@ -65,6 +65,7 @@ export default function Header({ city, handleOpenModal }) {
           >
             + Add clothes
           </button>
+          <ToggleSwitch />
         </div>
       </div>
     </header>
