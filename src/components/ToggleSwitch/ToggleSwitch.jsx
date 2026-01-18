@@ -14,6 +14,10 @@ export default function ToggleSwitch() {
     setIsActive((prevIsActive) => !prevIsActive);
   }
 
+  function handleMouseLeave() {
+    setIsActive(false);
+  }
+
   return (
     <div className="switch">
       <input
@@ -31,6 +35,7 @@ export default function ToggleSwitch() {
         htmlFor="switch-checkbox"
         onMouseDown={toggleIsActive}
         onMouseUp={toggleIsActive}
+        onMouseLeave={toggleIsActive}
       >
         <span className="switch__text switch__text_position_left">F</span>
         <span className="switch__text switch__text_position_right">C</span>
