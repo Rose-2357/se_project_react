@@ -1,0 +1,40 @@
+.side-bar {
+  padding: 47px 0 0;
+  width: 230px;
+}
+
+.side-bar__main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.side-bar__img-wrapper {
+  margin: 0;
+}
+
+.side-bar__img {
+  width: 56px;
+  height: 56px;
+}
+
+.side-bar__text {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.side-bar__btns {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.side-bar__btn {
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  color: #00000099;
+}

@@ -14,6 +14,7 @@ import {
 import ItemModal from "../ItemModal/ItemModal";
 import { TempUnitStateContext } from "../../contexts/TempUnitStateContext";
 import { TempUnitContext } from "../../contexts/TempUnitContext";
+import Profile from "../Profile/Profile";
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [itemCards, setItemCards] = useState(defaultClothingItems);
@@ -26,7 +27,7 @@ function App() {
   });
   const [selectedCard, setSelectedCard] = useState();
   const [weatherCondition, setWeatherCondition] = useState(
-    getWeatherCondition(weatherData.temp)
+    getWeatherCondition(weatherData.temp),
   );
 
   const [isTempUnitChecked, setIsTempUnitChecked] = useState(false);
@@ -81,7 +82,7 @@ function App() {
           city: `(failed to get city, ${err})`,
           temp: `(failed to get temprature, ${err})`,
           weather: `(failed to get weather, ${err})`,
-        })
+        }),
       );
   }, []);
 
@@ -106,7 +107,7 @@ function App() {
               city={weatherData.city}
               handleOpenModal={handleOpenAddClothesModal}
             />
-            <Main
+            {/* <Main
               itemCards={itemCards}
               weather={weatherData.weather}
               temp={weatherData.temp}
@@ -114,7 +115,8 @@ function App() {
               sunset={weatherData.sunset}
               handleCardClick={handleCardClick}
               weatherCondition={weatherCondition}
-            />
+            /> */}
+            <Profile />
             <Footer />
             <ModalWithForm
               name="addClothes"
