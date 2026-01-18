@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1030px) {
   .itemCards {
     gap: 16px;
     grid-template-columns: repeat(auto-fit, 245px);

@@ -50,7 +50,7 @@
   background-color: transparent;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 850px) {
   .header__column_position_right {
     display: none;
   }

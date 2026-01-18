@@ -6,6 +6,13 @@ export default function SideBar() {
 
   return (
     <div className="side-bar">
+      <figure className="side-bar__img-wrapper side-bar__img-wrapper_for_mobile">
+        <img
+          src={SideBarProfileImg}
+          alt={`${username}'s profile picture`}
+          className="side-bar__img"
+        />
+      </figure>
       <div className="side-bar__content">
         <div className="side-bar__main">
           <figure className="side-bar__img-wrapper">

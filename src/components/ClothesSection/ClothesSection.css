@@ -4,11 +4,16 @@
 }
 
 .clothes__text-container {
+  margin: 20px 0 16px;
   display: flex;
   justify-content: start;
   gap: 20px;
   font-weight: 700;
   font-size: 20px;
+}
+
+.clothes__title {
+  margin: 0;
 }
 
 .clothes__btn {
@@ -28,8 +33,23 @@
   justify-content: start;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 850px) {
+  .clothes {
+    width: 100%;
+  }
+
   .clothes__list-container {
     justify-content: center;
+  }
+
+  .clothes__text-container {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .clothes__text-container {
+    flex-direction: column;
+    text-align: center;
   }
 }
