@@ -35,7 +35,7 @@ export default function ToggleSwitch() {
         htmlFor="switch-checkbox"
         onMouseDown={toggleIsActive}
         onMouseUp={toggleIsActive}
-        onMouseLeave={toggleIsActive}
+        onMouseLeave={handleMouseLeave}
       >
         <span className="switch__text switch__text_position_left">F</span>
         <span className="switch__text switch__text_position_right">C</span>

@@ -45,6 +45,12 @@
   justify-content: center;
   gap: 12px;
   margin-bottom: 24px;
+  color: unset;
+  text-decoration: unset;
+}
+
+.menu__profile-info:hover {
+  text-decoration: underline;
 }
 
 .menu__text {
