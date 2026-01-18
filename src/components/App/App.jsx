@@ -6,15 +6,22 @@ import Main from "../Main/Main";
 import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
+
 import {
   checkImageValidity,
   checkValidity,
   displayValid,
 } from "../../utils/validation";
-import ItemModal from "../ItemModal/ItemModal";
+
 import { TempUnitStateContext } from "../../contexts/TempUnitStateContext";
 import { TempUnitContext } from "../../contexts/TempUnitContext";
-import Profile from "../Profile/Profile";
+import { ItemCardsContext } from "../../contexts/ItemCardsContext";
+import { HandleCardClickContext } from "../../contexts/HandleCardClickContext";
+import { WeatherConditionContext } from "../../contexts/WeatherConditionContext";
+import { HandleOpenAddClothesModalContext } from "../../contexts/HandleOpenAddClothesModalContext";
+
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [itemCards, setItemCards] = useState(defaultClothingItems);
@@ -101,142 +108,157 @@ function App() {
       value={[isTempUnitChecked, setIsTempUnitChecked]}
     >
       <TempUnitContext.Provider value={tempUnit}>
-        <div className="app">
-          <div className="app__content">
-            <Header
-              city={weatherData.city}
-              handleOpenModal={handleOpenAddClothesModal}
-            />
-            {/* <Main
-              itemCards={itemCards}
-              weather={weatherData.weather}
-              temp={weatherData.temp}
-              sunrise={weatherData.sunrise}
-              sunset={weatherData.sunset}
-              handleCardClick={handleCardClick}
-              weatherCondition={weatherCondition}
-            /> */}
-            <Profile />
-            <Footer />
-            <ModalWithForm
-              name="addClothes"
-              title="New Garment"
-              submitBtnText="Add garment"
-              isOpen={activeModal === "addClothes"}
-              handleCloseModal={handleCloseModal}
-              validationDependencies={[nameError, urlError, weatherTypeError]}
-              handleSubmit={handleSubmitAddClothes}
-            >
-              <label
-                className={`modal__text ${
-                  nameError.message !== "" ? "modal__text_state_error" : ""
-                }`}
-                htmlFor="add-clothes-name"
+        <ItemCardsContext.Provider value={itemCards}>
+          <HandleCardClickContext.Provider value={handleCardClick}>
+            <WeatherConditionContext.Provider value={weatherCondition}>
+              <HandleOpenAddClothesModalContext.Provider
+                value={handleOpenAddClothesModal}
               >
-                Name{nameError.message}
-              </label>
-              <input
-                className="modal__input modal__input_type_text"
-                minLength="2"
-                maxLength="30"
-                type="text"
-                name="name"
-                id="add-clothes-name"
-                placeholder="Name"
-                required
-                onBlur={(e) => checkValidity(e, setNameError)}
-                onInput={(e) => displayValid(e, setNameError)}
-              />
-              <label
-                className={`modal__text ${
-                  urlError.message !== "" ? "modal__text_state_error" : ""
-                }`}
-                htmlFor="add-clothes-image"
-              >
-                Image{urlError.message}
-              </label>
-              <input
-                className="modal__input modal__input_type_text"
-                type="url"
-                name="image"
-                id="add-clothes-image"
-                placeholder="Image"
-                required
-                onBlur={(e) =>
-                  checkValidity(e, setUrlError, checkImageValidity)
-                }
-                onInput={(e) => displayValid(e, setUrlError)}
-              />
-              <fieldset
-                className="modal__fieldset"
-                name="weather-types"
-                id="weather-types"
-                onInput={(e) => checkValidity(e, setWeatherTypeError)}
-              >
-                <legend
-                  className="modal__text modal__text_type_legend"
-                  htmlFor="weather-types"
-                >
-                  Select the weather type:
-                </legend>
-                <div className="modal__option">
-                  <input
-                    value="hot"
-                    className="modal__input modal__input_type_radio"
-                    type="radio"
-                    name="weather-type"
-                    id="add-clothes-hot"
-                    required
-                  />
-                  <span className="modal__radio-input-clone" />
-                  <label
-                    className="modal__text modal__text_type_radio-label"
-                    htmlFor="add-clothes-hot"
-                  >
-                    Hot
-                  </label>
+                <div className="app">
+                  <div className="app__content">
+                    <Header
+                      city={weatherData.city}
+                      handleOpenModal={handleOpenAddClothesModal}
+                    />
+                    {/* <Main
+                    weather={weatherData.weather}
+                    temp={weatherData.temp}
+                    sunrise={weatherData.sunrise}
+                    sunset={weatherData.sunset}
+                  /> */}
+                    <Profile />
+                    <Footer />
+                    <ModalWithForm
+                      name="addClothes"
+                      title="New Garment"
+                      submitBtnText="Add garment"
+                      isOpen={activeModal === "addClothes"}
+                      handleCloseModal={handleCloseModal}
+                      validationDependencies={[
+                        nameError,
+                        urlError,
+                        weatherTypeError,
+                      ]}
+                      handleSubmit={handleSubmitAddClothes}
+                    >
+                      <label
+                        className={`modal__text ${
+                          nameError.message !== ""
+                            ? "modal__text_state_error"
+                            : ""
+                        }`}
+                        htmlFor="add-clothes-name"
+                      >
+                        Name{nameError.message}
+                      </label>
+                      <input
+                        className="modal__input modal__input_type_text"
+                        minLength="2"
+                        maxLength="30"
+                        type="text"
+                        name="name"
+                        id="add-clothes-name"
+                        placeholder="Name"
+                        required
+                        onBlur={(e) => checkValidity(e, setNameError)}
+                        onInput={(e) => displayValid(e, setNameError)}
+                      />
+                      <label
+                        className={`modal__text ${
+                          urlError.message !== ""
+                            ? "modal__text_state_error"
+                            : ""
+                        }`}
+                        htmlFor="add-clothes-image"
+                      >
+                        Image{urlError.message}
+                      </label>
+                      <input
+                        className="modal__input modal__input_type_text"
+                        type="url"
+                        name="image"
+                        id="add-clothes-image"
+                        placeholder="Image"
+                        required
+                        onBlur={(e) =>
+                          checkValidity(e, setUrlError, checkImageValidity)
+                        }
+                        onInput={(e) => displayValid(e, setUrlError)}
+                      />
+                      <fieldset
+                        className="modal__fieldset"
+                        name="weather-types"
+                        id="weather-types"
+                        onInput={(e) => checkValidity(e, setWeatherTypeError)}
+                      >
+                        <legend
+                          className="modal__text modal__text_type_legend"
+                          htmlFor="weather-types"
+                        >
+                          Select the weather type:
+                        </legend>
+                        <div className="modal__option">
+                          <input
+                            value="hot"
+                            className="modal__input modal__input_type_radio"
+                            type="radio"
+                            name="weather-type"
+                            id="add-clothes-hot"
+                            required
+                          />
+                          <span className="modal__radio-input-clone" />
+                          <label
+                            className="modal__text modal__text_type_radio-label"
+                            htmlFor="add-clothes-hot"
+                          >
+                            Hot
+                          </label>
+                        </div>
+                        <div className="modal__option">
+                          <input
+                            value="warm"
+                            className="modal__input modal__input_type_radio"
+                            type="radio"
+                            name="weather-type"
+                            id="add-clothes-warm"
+                          />
+                          <span className="modal__radio-input-clone" />
+                          <label
+                            className="modal__text modal__text_type_radio-label"
+                            htmlFor="add-clothes-warm"
+                          >
+                            Warm
+                          </label>
+                        </div>
+                        <div className="modal__option">
+                          <input
+                            value="cold"
+                            className="modal__input modal__input_type_radio"
+                            type="radio"
+                            name="weather-type"
+                            id="add-clothes-cold"
+                          />
+                          <span className="modal__radio-input-clone" />
+                          <label
+                            className="modal__text modal__text_type_radio-label"
+                            htmlFor="add-clothes-cold"
+                          >
+                            Cold
+                          </label>
+                        </div>
+                      </fieldset>
+                    </ModalWithForm>
+                    <ItemModal
+                      card={selectedCard}
+                      isOpen={activeModal === "itemCard"}
+                      handleCloseModal={handleCloseModal}
+                    />
+                  </div>
                 </div>
-                <div className="modal__option">
-                  <input
-                    value="warm"
-                    className="modal__input modal__input_type_radio"
-                    type="radio"
-                    name="weather-type"
-                    id="add-clothes-warm"
-                  />
-                  <span className="modal__radio-input-clone" />
-                  <label
-                    className="modal__text modal__text_type_radio-label"
-                    htmlFor="add-clothes-warm"
-                  >
-                    Warm
-                  </label>
-                </div>
-                <div className="modal__option">
-                  <input
-                    value="cold"
-                    className="modal__input modal__input_type_radio"
-                    type="radio"
-                    name="weather-type"
-                    id="add-clothes-cold"
-                  />
-                  <span className="modal__radio-input-clone" />
-                  <label
-                    className="modal__text modal__text_type_radio-label"
-                    htmlFor="add-clothes-cold"
-                  >
-                    Cold
-                  </label>
-                </div>
-              </fieldset>
-            </ModalWithForm>
-            <ItemModal
-              card={selectedCard}
-              isOpen={activeModal === "itemCard"}
-              handleCloseModal={handleCloseModal}
-            />
-          </div>
-        </div>
+              </HandleOpenAddClothesModalContext.Provider>
+            </WeatherConditionContext.Provider>
+          </HandleCardClickContext.Provider>
+        </ItemCardsContext.Provider>
       </TempUnitContext.Provider>
     </TempUnitStateContext.Provider>
   );

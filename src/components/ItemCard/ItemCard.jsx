@@ -1,7 +1,6 @@
-import { getWeatherCondition } from "../../utils/weatherApi";
 import "./ItemCard.css";
 
-export default function ItemCard({ item, weatherCondition }) {
+export default function ItemCard({ filtered, item, weatherCondition }) {
   return (
     <li
       className="itemCard"
@@ -9,7 +8,8 @@ export default function ItemCard({ item, weatherCondition }) {
       data-link={item.link}
       data-weather={item.weather}
       style={{
-        display: weatherCondition === item.weather ? "flex" : "none",
+        display:
+          weatherCondition === item.weather || !filtered ? "flex" : "none",
       }}
     >
       <p className="itemCard__name">{item.name}</p>

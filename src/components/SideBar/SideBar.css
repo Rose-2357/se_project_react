@@ -1,5 +1,9 @@
 .side-bar {
-  padding: 47px 0 0;
+  padding: 0;
+  width: 346px;
+}
+
+.side-bar__content {
   width: 230px;
 }
 
@@ -36,5 +40,11 @@
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-  color: #00000099;
+  color: #000000;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.side-bar__btn:hover {
+  opacity: 1;
 }

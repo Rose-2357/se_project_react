@@ -1,0 +1,35 @@
+.clothes {
+  padding: 0;
+  width: 75%;
+}
+
+.clothes__text-container {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.clothes__btn {
+  border: none;
+  background-color: transparent;
+  color: #000000;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.clothes__btn:hover {
+  opacity: 1;
+}
+
+.clothes__list-container {
+  justify-content: start;
+}
+
+@media screen and (max-width: 830px) {
+  .clothes__list-container {
+    justify-content: center;
+  }
+}

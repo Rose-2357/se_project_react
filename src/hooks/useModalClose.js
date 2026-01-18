@@ -9,7 +9,7 @@ export default function useModalClose(isOpen, onClose, className) {
     }
 
     function handleOverlay(e) {
-      if (e.target.classList.contains({ className })) onClose();
+      if (e.target.classList.contains(className)) onClose();
     }
 
     document.addEventListener("keydown", handleEscape);

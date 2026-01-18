@@ -1,19 +1,10 @@
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCards from "../ItemCards/ItemCards";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import "./Main.css";
-import "./ItemCards.css";
 import { useContext } from "react";
 import { TempUnitContext } from "../../contexts/TempUnitContext";
 
-export default function Main({
-  itemCards,
-  temp,
-  weather,
-  sunrise,
-  sunset,
-  handleCardClick,
-  weatherCondition,
-}) {
+export default function Main({ temp, weather, sunrise, sunset }) {
   const tempUnit = useContext(TempUnitContext);
 
   temp = temp[tempUnit];
@@ -30,15 +21,7 @@ export default function Main({
       <p className="main__text">
         Today is {temp}° {tempUnit} / You may want to wear:
       </p>
-      <ul className="itemCards" onClick={handleCardClick}>
-        {itemCards.toReversed().map((item) => (
-          <ItemCard
-            key={item._id}
-            item={item}
-            weatherCondition={weatherCondition}
-          />
-        ))}
-      </ul>
+      <ItemCards filtered />
     </main>
   );
 }

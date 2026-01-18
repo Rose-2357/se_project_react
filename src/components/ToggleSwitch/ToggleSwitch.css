@@ -51,8 +51,15 @@
   background-color: #000;
   border-radius: 50%;
 
-  transition: transform, left, width ease-in-out;
+  transition:
+    transform,
+    left,
+    width ease-in-out;
   transition-duration: 0.2s;
+}
+
+.switch__label:hover .switch__btn {
+  width: 30px;
 }
 
 .switch__checkbox_active ~ .switch__label .switch__btn {
