@@ -1,27 +1,41 @@
-export function checkValidity(e, setFunction, additionalFunction = null) {
+export function checkValidity(
+  e,
+  defaultObject,
+  setFunction,
+  additionalFunction = null,
+) {
   if (!e.target.validity.valid) {
     setFunction({
-      error: true,
-      message: ` (${e.target.validationMessage})`,
+      ...defaultObject,
+      [e.target.name]: {
+        error: true,
+        message: ` (${e.target.validationMessage})`,
+      },
     });
   } else if (additionalFunction) {
-    additionalFunction(e, setFunction);
+    additionalFunction(e, defaultObject, setFunction);
   } else {
     setFunction({
-      error: false,
-      message: "",
+      ...defaultObject,
+      [e.target.name]: {
+        error: false,
+        message: "",
+      },
     });
   }
 }
 
-export function displayValid(e, setFunction) {
+export function displayValid(e, defaultObject, setFunction) {
   setFunction({
-    error: true,
-    message: "",
+    ...defaultObject,
+    [e.target.name]: {
+      error: true,
+      message: "",
+    },
   });
 }
 
-export function checkImageValidity(e, setFunction) {
+export function checkImageValidity(e, defaultObject, setFunction) {
   const test = new Image();
   test.src = e.target.value;
 
@@ -33,15 +47,21 @@ export function checkImageValidity(e, setFunction) {
   loadImage
     .then(() =>
       setFunction({
-        error: false,
-        message: "",
-      })
+        ...defaultObject,
+        [e.target.name]: {
+          error: false,
+          message: "",
+        },
+      }),
     )
     .catch(() =>
       setFunction({
-        error: true,
-        message: " (URL is not a valid image)",
-      })
+        ...defaultObject,
+        [e.target.name]: {
+          error: true,
+          message: " (URL is not a valid image)",
+        },
+      }),
     )
     .finally(() => {
       test.remove();

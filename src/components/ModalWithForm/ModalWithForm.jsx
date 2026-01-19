@@ -16,7 +16,7 @@ export default function ModalWithForm({
 
   useEffect(() => {
     const isAnyInputInvalid = validationDependencies.some(
-      (value) => value.error
+      (value) => value.error,
     );
     if (isAnyInputInvalid && isFormValid) setIsFormValid(false);
     if (!(isAnyInputInvalid || isFormValid)) setIsFormValid(true);
