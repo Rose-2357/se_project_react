@@ -44,7 +44,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
       <input
         className="modal__input modal__input_type_text"
         minLength="2"
-        maxLength="30"
+        maxLength="15"
         type="text"
         name="name"
         id="add-clothes-name"

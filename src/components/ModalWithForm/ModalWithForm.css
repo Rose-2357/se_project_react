@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100%;
+  max-width: 100%;
   background-color: #0005;
   z-index: 1;
   display: flex;
@@ -11,7 +11,9 @@
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0.3s, opacity 0.3s ease;
+  transition:
+    visibility 0.3s,
+    opacity 0.3s ease;
 }
 
 .modal_is-open {
