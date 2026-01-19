@@ -1,16 +1,20 @@
 .menu {
   position: fixed;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 18px 16px 0;
   right: 0;
+  top: 0;
   z-index: 1;
   width: 100%;
   max-width: 500px;
+  height: 100vh;
   transform: translateX(calc(min(100%, 500px) - 16px));
   transition: transform 0.4s ease-in;
 }
 
 .menu__content {
+  max-width: 430px;
+  margin-left: auto;
   position: relative;
   background-color: #fff;
   display: flex;
@@ -71,5 +75,6 @@
 @media screen and (max-width: 850px) {
   .menu_is-open {
     transform: translateX(0);
+    max-width: unset;
   }
 }

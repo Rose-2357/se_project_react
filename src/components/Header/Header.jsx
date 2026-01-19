@@ -18,6 +18,10 @@ export default function Header({ city, handleOpenModal }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  function handleClick(e) {
+    if (e.target.classList.contains("menu_is-open")) setIsMobileMenuOpen(false);
+  }
+
   const username = "Terrence Tegegne";
 
   return (
@@ -47,7 +51,10 @@ export default function Header({ city, handleOpenModal }) {
         </Link>
       </div>
       <button className="header__menu-btn" onClick={toggleMobileMenu}></button>
-      <div className={`menu ${isMobileMenuOpen ? "menu_is-open" : ""}`}>
+      <div
+        className={`menu ${isMobileMenuOpen ? "menu_is-open" : ""}`}
+        onClick={handleClick}
+      >
         <div className="menu__content">
           <button
             type="button"
