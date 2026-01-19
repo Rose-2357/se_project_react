@@ -17,6 +17,16 @@ export function useForm(defaultValues, additionalValidityFunctions) {
     return Object.keys(additionalValidityFunctions).some((key) => key === str);
   }
 
+  function resetForm() {
+    Object.keys(values).forEach((key) => {
+      setValues((prevValues) => ({
+        ...prevValues,
+        [key]: "",
+      }));
+      setErrors(defaultErrors);
+    });
+  }
+
   function handleBlur(e) {
     checkValidity(
       e,
@@ -34,5 +44,13 @@ export function useForm(defaultValues, additionalValidityFunctions) {
     displayValid(e, errors, setErrors);
   }
 
-  return { values, handleChange, setValues, errors, handleBlur, setErrors };
+  return {
+    values,
+    handleChange,
+    setValues,
+    errors,
+    handleBlur,
+    setErrors,
+    resetForm,
+  };
 }

@@ -15,10 +15,11 @@ import { HandleCardClickContext } from "../../contexts/HandleCardClickContext";
 import { WeatherConditionContext } from "../../contexts/WeatherConditionContext";
 import { HandleOpenAddClothesModalContext } from "../../contexts/HandleOpenAddClothesModalContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, postItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
-  const [itemCards, setItemCards] = useState(defaultClothingItems);
+  const [itemCards, setItemCards] = useState([]);
   const [activeModal, setActiveModal] = useState("");
 
   const [selectedCard, setSelectedCard] = useState();
@@ -37,18 +38,22 @@ function App() {
     setActiveModal("");
   }
 
-  function handleSubmitAddClothes(e) {
+  function handleSubmitAddClothes(e, formReseter) {
     e.preventDefault();
-    const newItem = {
-      _id: itemCards[itemCards.length - 1]._id + 1,
-      name: e.target.name.value,
-      link: e.target.image.value,
-      weather: e.target["weather-type"].value,
-    };
 
-    setItemCards([...itemCards, newItem]);
-    e.target.reset();
-    handleCloseModal();
+    postItem({
+      name: e.target.name.value,
+      imageUrl: e.target.image.value,
+      weather: e.target["weather-type"].value,
+    })
+      .then((newItem) => {
+        setItemCards([...itemCards, newItem]);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        formReseter();
+        handleCloseModal();
+      });
   }
 
   function handleCardClick(e) {
@@ -57,7 +62,7 @@ function App() {
     setActiveModal("itemCard");
     setSelectedCard({
       name: itemCard.getAttribute("data-name"),
-      link: itemCard.getAttribute("data-link"),
+      imageUrl: itemCard.getAttribute("data-imageUrl"),
       weather: itemCard.getAttribute("data-weather"),
     });
   }
@@ -80,6 +85,23 @@ function App() {
           weather: `(failed to get weather, ${err})`,
         }),
       );
+
+    getItems()
+      .then((data) => {
+        setItemCards(data);
+      })
+      .catch((err) => {
+        setItemCards([
+          {
+            _id: 0,
+            name: `Something went wrong: ${err} \n `,
+            weather: weatherCondition,
+            imageUrl: new URL(
+              "https://medias.artmajeur.com/hd/13698077_aaaaa1234567.jpg?v=1742514890",
+            ),
+          },
+        ]);
+      });
   }, []);
 
   useEffect(() => {
@@ -90,7 +112,8 @@ function App() {
     setTempUnit(isTempUnitChecked ? "C" : "F");
   }, [isTempUnitChecked]);
 
-  if (Object.keys(weatherData).length === 0) return null;
+  if (Object.keys(weatherData).length === 0 || itemCards.length === 0)
+    return null;
 
   return (
     <BrowserRouter basename="/se_project_react/">

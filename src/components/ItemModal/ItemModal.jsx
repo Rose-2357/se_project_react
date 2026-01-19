@@ -15,11 +15,15 @@ export default function ItemModal({ card, isOpen, handleCloseModal }) {
         />
         <div className="ItemModal__img-container">
           <figure className="ItemModal__img-wrapper">
-            <img src={card.link} alt={card.name} className="ItemModal__img" />
+            <img
+              src={card.imageUrl}
+              alt={card.name}
+              className="ItemModal__img"
+            />
           </figure>
           <figure className="ItemModal__img-wrapper ItemModal__img-wrapper_effect_blur">
             <img
-              src={card.link}
+              src={card.imageUrl}
               alt={card.name}
               className="ItemModal__img ItemModal__img_effect_blur"
             />

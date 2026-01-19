@@ -5,7 +5,7 @@ export default function ItemCard({ filtered, item, weatherCondition }) {
     <li
       className="itemCard"
       data-name={item.name}
-      data-link={item.link}
+      data-imageUrl={item.imageUrl}
       data-weather={item.weather}
       style={{
         display:
@@ -14,7 +14,7 @@ export default function ItemCard({ filtered, item, weatherCondition }) {
     >
       <p className="itemCard__name">{item.name}</p>
       <figure className="itemCard__img-wrapper">
-        <img src={item.link} alt={item.name} className="itemCard__img" />
+        <img src={item.imageUrl} alt={item.name} className="itemCard__img" />
       </figure>
     </li>
   );

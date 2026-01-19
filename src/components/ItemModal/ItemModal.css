@@ -11,7 +11,9 @@
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0.3s, opacity 0.3s ease;
+  transition:
+    visibility 0.3s,
+    opacity 0.3s ease;
 }
 
 .ItemModal__content {
@@ -84,7 +86,6 @@
 
 .ItemModal__img_effect_blur {
   object-fit: cover;
-  background-color: #000;
   z-index: 0;
   filter: blur(6px);
 }

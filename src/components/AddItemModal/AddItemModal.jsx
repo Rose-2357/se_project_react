@@ -4,7 +4,7 @@ import { checkImageValidity } from "../../utils/validation";
 import { useForm } from "../../hooks/useForm";
 
 export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
-  const { values, handleChange, errors, handleBlur } = useForm(
+  const { values, handleChange, errors, handleBlur, resetForm } = useForm(
     {
       name: "",
       image: "",
@@ -14,6 +14,10 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
       image: checkImageValidity,
     },
   );
+
+  function handleSubmit(e) {
+    onAddModal(e, resetForm);
+  }
 
   return (
     <ModalWithForm
@@ -27,7 +31,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
         errors.image,
         errors["weather-type"],
       ]}
-      handleSubmit={onAddModal}
+      handleSubmit={handleSubmit}
     >
       <label
         className={`modal__text ${
@@ -73,7 +77,10 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
         className="modal__fieldset"
         name="weather-types"
         id="weather-types"
-        onChange={handleBlur}
+        onChange={(e) => {
+          handleChange(e);
+          handleBlur(e);
+        }}
         // runs the blur handler to change the validity of the input onChange
       >
         <legend
@@ -90,6 +97,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             name="weather-type"
             id="add-clothes-hot"
             required
+            checked={values["weather-type"] === "hot" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label
@@ -106,6 +114,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             type="radio"
             name="weather-type"
             id="add-clothes-warm"
+            checked={values["weather-type"] === "warm" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label
@@ -122,6 +131,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             type="radio"
             name="weather-type"
             id="add-clothes-cold"
+            checked={values["weather-type"] === "cold" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label
