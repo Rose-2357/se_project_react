@@ -30,8 +30,9 @@ export default function ConformationModal({
         </p>
         <form className="conformation-modal__form">
           <button
-            className="conformation-modal__btn conformation-modal__btn_action_submit"
+            className="conformation-modal__btn conformation-modal__btn_action_delete"
             onClick={deleteCard}
+            type="button"
           >
             Yes, delete item
           </button>

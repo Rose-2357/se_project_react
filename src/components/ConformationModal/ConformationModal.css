@@ -54,7 +54,7 @@
   transition: opacity 0.2s ease;
 }
 
-.conformation-modal__btn_action_submit {
+.conformation-modal__btn_action_delete {
   color: #ff4d00;
 }
 
