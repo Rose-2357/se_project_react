@@ -46,7 +46,7 @@ export default function ItemModal({
             type="button"
             onClick={handleDeleteClick}
           >
-            Delete items
+            Delete item
           </button>
         </div>
       </div>

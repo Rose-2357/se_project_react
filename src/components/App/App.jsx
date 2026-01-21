@@ -34,7 +34,7 @@ function App() {
     setActiveModal("addClothes");
   }
 
-  function handleOpenConformationModal(id) {
+  function handleOpenConformationModal() {
     setActiveModal("conformationModal");
   }
 
