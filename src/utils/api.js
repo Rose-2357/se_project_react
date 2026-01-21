@@ -4,10 +4,16 @@ const headers = {
   "Content-Type": "application/json",
 };
 
+function handleRes(res) {
+  return res.ok ? res.json() : Promise.reject(res.status);
+}
+
+function handleError(err) {
+  Promise.reject(err);
+}
+
 export function getItems() {
-  return fetch(baseUrl)
-    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-    .catch((err) => Promise.reject(err));
+  return fetch(baseUrl).then(handleRes).catch(handleError);
 }
 
 export function postItem(data) {
@@ -17,5 +23,16 @@ export function postItem(data) {
     body: JSON.stringify({
       ...data,
     }),
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.status)));
+  })
+    .then(handleRes)
+    .catch(handleError);
+}
+
+export function deleteItem(id) {
+  return fetch(`${baseUrl}/${id}`, {
+    method: "DELETE",
+    headers,
+  })
+    .then(handleRes)
+    .catch(handleError);
 }

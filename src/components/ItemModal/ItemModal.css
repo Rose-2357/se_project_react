@@ -1,4 +1,4 @@
-.ItemModal {
+.item-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +16,7 @@
     opacity 0.3s ease;
 }
 
-.ItemModal__content {
+.item-modal__content {
   background-color: #fff;
   max-width: fit-content;
   min-width: 300px;
@@ -27,12 +27,12 @@
   margin: 16px;
 }
 
-.ItemModal_is-open {
+.item-modal_is-open {
   opacity: 1;
   visibility: visible;
 }
 
-.ItemModal__close-btn {
+.item-modal__close-btn {
   background-image: url(../../assets/close-btn.svg);
   border: none;
   background-color: transparent;
@@ -47,15 +47,15 @@
   transition: opacity 0.2s ease;
 }
 
-.ItemModal__close-btn:hover {
+.item-modal__close-btn:hover {
   opacity: 1;
 }
 
-.ItemModal__img-container {
+.item-modal__img-container {
   position: relative;
 }
 
-.ItemModal__img-wrapper {
+.item-modal__img-wrapper {
   margin: 0;
   margin-bottom: 20px;
   width: 100%;
@@ -64,7 +64,7 @@
   background-size: cover;
 }
 
-.ItemModal__img-wrapper_effect_blur {
+.item-modal__img-wrapper_effect_blur {
   position: absolute;
   top: 0;
   left: 0;
@@ -76,7 +76,7 @@
   );
 }
 
-.ItemModal__img {
+.item-modal__img {
   width: 100%;
   max-height: calc(100vh - 200px);
   object-fit: contain;
@@ -84,22 +84,49 @@
   z-index: 1;
 }
 
-.ItemModal__img_effect_blur {
+.item-modal__img_effect_blur {
   object-fit: cover;
   z-index: 0;
   filter: blur(6px);
 }
 
-.ItemModal__text {
-  padding-bottom: 32px;
+.item-modal__text {
+  padding: 32px;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
   font-weight: 700;
   font-size: 20px;
 }
 
-.ItemModal__para {
-  margin: 0 0 12px 32px;
+.item-modal__btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  height: fit-content;
+  color: #ff4d00;
+  font-weight: inherit;
+  font-size: inherit;
+  cursor: pointer;
 }
 
-.ItemModal__para_position_last {
+.item-modal__para {
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.item-modal__para_position_last {
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 430px) {
+  .item-modal__text {
+    padding: 0 16px 32px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .item-modal__text {
+    font-size: 18px;
+  }
 }

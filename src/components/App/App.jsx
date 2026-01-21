@@ -4,7 +4,6 @@ import { getWeatherCondition, getWeatherData } from "../../utils/weatherApi";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "../Main/Main";
-import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
@@ -15,7 +14,8 @@ import { HandleCardClickContext } from "../../contexts/HandleCardClickContext";
 import { WeatherConditionContext } from "../../contexts/WeatherConditionContext";
 import { HandleOpenAddClothesModalContext } from "../../contexts/HandleOpenAddClothesModalContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, postItem } from "../../utils/api";
+import { deleteItem, getItems, postItem } from "../../utils/api";
+import ConformationModal from "../ConformationModal/ConformationModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -34,8 +34,24 @@ function App() {
     setActiveModal("addClothes");
   }
 
+  function handleOpenConformationModal(id) {
+    setActiveModal("conformationModal");
+  }
+
   function handleCloseModal() {
     setActiveModal("");
+  }
+
+  function handleDeleteCard(e, id) {
+    e.preventDefault();
+    deleteItem(id)
+      .then(() => {
+        setItemCards((prevItemCards) =>
+          prevItemCards.filter((item) => item._id !== id),
+        );
+      })
+      .catch((err) => console.error(err))
+      .finally(handleCloseModal);
   }
 
   function handleSubmitAddClothes(e, formReseter) {
@@ -61,6 +77,7 @@ function App() {
     if (!itemCard) return;
     setActiveModal("itemCard");
     setSelectedCard({
+      _id: itemCard.getAttribute("data-id"),
       name: itemCard.getAttribute("data-name"),
       imageUrl: itemCard.getAttribute("data-imageUrl"),
       weather: itemCard.getAttribute("data-weather"),
@@ -157,6 +174,13 @@ function App() {
                         card={selectedCard}
                         isOpen={activeModal === "itemCard"}
                         handleCloseModal={handleCloseModal}
+                        handleDeleteClick={handleOpenConformationModal}
+                      />
+                      <ConformationModal
+                        handleCloseModal={handleCloseModal}
+                        isOpen={activeModal === "conformationModal"}
+                        selectedCard={selectedCard}
+                        handleDeleteCard={handleDeleteCard}
                       />
                     </div>
                   </div>

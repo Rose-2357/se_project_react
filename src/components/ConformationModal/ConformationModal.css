@@ -1,0 +1,74 @@
+.conformation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #0005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.3s,
+    opacity 0.3s ease;
+}
+
+.conformation-modal_is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.conformation-modal__content {
+  padding: 60px 16px;
+  width: 100%;
+  max-width: 670px;
+  background-color: #fff;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.conformation-modal__btn {
+  border: none;
+  background-color: transparent;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.conformation-modal__btn_action_close {
+  background-image: url(../../assets/close-btn.svg);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.conformation-modal__btn_action_submit {
+  color: #ff4d00;
+}
+
+.conformation-modal__btn_action_close:hover {
+  opacity: 1;
+}
+
+.conformation-modal__title {
+  margin: 0;
+}
+
+.conformation-modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}

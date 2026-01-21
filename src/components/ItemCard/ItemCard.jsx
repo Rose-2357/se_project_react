@@ -4,6 +4,7 @@ export default function ItemCard({ filtered, item, weatherCondition }) {
   return (
     <li
       className="itemCard"
+      data-id={item._id}
       data-name={item.name}
       data-imageUrl={item.imageUrl}
       data-weather={item.weather}
