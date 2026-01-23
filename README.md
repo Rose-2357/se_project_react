@@ -22,9 +22,17 @@ A web application that suggests clothisg based on the weather
 
 ![Screenshot of item modal](./demo/item-modal.png)
 
-# Demo Video
+# Demo Videos
 
-[See on YouTube](https://youtu.be/FjNwaREWMWo)
+### Youtube:
+
+- [Part 1: The Frontend](https://youtu.be/FjNwaREWMWo)
+
+- [Part 2: Mock server, Added features](https://youtu.be/cLBigjFQl4A)
+
+### Google Drive:
+
+- [Project 11: WTWR Part 2](https://drive.google.com/file/d/1bzrinxRrLOaGW-oyHfHTgyJOdz6pkshi/view?usp=drive_link)
 
 # GitHib pages
 
