@@ -125,8 +125,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setWeatherCondition(getWeatherCondition(weatherData.temp));
-  }, [weatherData.temp]);
+    setWeatherCondition(getWeatherCondition(weatherData.temp.F));
+  }, [weatherData.temp.F]);
 
   useEffect(() => {
     setTempUnit(isTempUnitChecked ? "C" : "F");
