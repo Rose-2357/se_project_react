@@ -49,9 +49,9 @@ function App() {
         setItemCards((prevItemCards) =>
           prevItemCards.filter((item) => item._id !== id),
         );
+        handleCloseModal();
       })
-      .catch((err) => console.error(err))
-      .finally(handleCloseModal);
+      .catch((err) => console.error(err));
   }
 
   function handleSubmitAddClothes(e, formReseter) {
@@ -64,12 +64,10 @@ function App() {
     })
       .then((newItem) => {
         setItemCards([...itemCards, newItem]);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => {
         formReseter();
         handleCloseModal();
-      });
+      })
+      .catch((err) => console.error(err));
   }
 
   function handleCardClick(e) {
