@@ -16,6 +16,7 @@ import { HandleOpenAddClothesModalContext } from "../../contexts/HandleOpenAddCl
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { deleteItem, getItems, postItem } from "../../utils/api";
 import ConformationModal from "../ConformationModal/ConformationModal";
+import { errorImageLink } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -29,6 +30,7 @@ function App() {
 
   const [isTempUnitChecked, setIsTempUnitChecked] = useState(false);
   const [tempUnit, setTempUnit] = useState("F");
+  const [apiFailed, setApiFailed] = useState(false);
 
   function handleOpenAddClothesModal() {
     setActiveModal("addClothes");
@@ -93,13 +95,18 @@ function App() {
           },
         });
       })
-      .catch((err) =>
+      .catch((err) => {
+        setApiFailed(true);
+        const tempError = `(failed to get temprature, ${err})`;
         setWeatherData({
           city: `(failed to get city, ${err})`,
-          temp: `(failed to get temprature, ${err})`,
+          temp: {
+            C: tempError,
+            F: tempError,
+          },
           weather: `(failed to get weather, ${err})`,
-        }),
-      );
+        });
+      });
 
     getItems()
       .then((data) => {
@@ -111,9 +118,7 @@ function App() {
             _id: 0,
             name: `Something went wrong: ${err} \n `,
             weather: weatherCondition,
-            imageUrl: new URL(
-              "https://medias.artmajeur.com/hd/13698077_aaaaa1234567.jpg?v=1742514890",
-            ),
+            imageUrl: new URL(errorImageLink),
           },
         ]);
       });
@@ -157,6 +162,7 @@ function App() {
                               temp={weatherData.temp}
                               sunrise={weatherData.sunrise}
                               sunset={weatherData.sunset}
+                              apiFailed={apiFailed}
                             />
                           }
                         />

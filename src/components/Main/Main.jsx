@@ -4,7 +4,7 @@ import "./Main.css";
 import { useContext } from "react";
 import { TempUnitContext } from "../../contexts/TempUnitContext";
 
-export default function Main({ temp, weather, sunrise, sunset }) {
+export default function Main({ temp, weather, sunrise, sunset, apiFailed }) {
   const tempUnit = useContext(TempUnitContext);
 
   temp = temp[tempUnit];
@@ -17,11 +17,14 @@ export default function Main({ temp, weather, sunrise, sunset }) {
         tempUnit={tempUnit}
         sunrise={sunrise}
         sunset={sunset}
+        apiFailed={apiFailed}
       />
       <p className="main__text">
-        Today is {temp}° {tempUnit} / You may want to wear:
+        {!apiFailed
+          ? `Today is ${temp}° ${tempUnit} / You may want to wear:`
+          : `Your items:`}
       </p>
-      <ItemCards filtered />
+      <ItemCards filtered={!apiFailed} />
     </main>
   );
 }

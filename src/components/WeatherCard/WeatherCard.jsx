@@ -7,6 +7,7 @@ export default function WeatherCard({
   weather,
   sunrise,
   sunset,
+  apiFailed,
 }) {
   const currentTime = Date.now() / 1000;
   const isDay = sunrise < currentTime && currentTime < sunset;
@@ -14,6 +15,7 @@ export default function WeatherCard({
   function getCardImageData(isDay, weather) {
     if (weather === "Drizzle") weather = "Rain";
     const time = isDay ? "day" : "night";
+    if (!weatherCardImages[time][weather]) weather = "Fog";
     return {
       src: weatherCardImages[time][weather],
       alt: `${time.toUpperCase()}, ${weather}`,
@@ -29,10 +31,15 @@ export default function WeatherCard({
           className="weather-card__img"
           src={imageData.src}
           alt={imageData.alt}
+          style={apiFailed ? { opacity: 0 } : {}}
         />
       </figure>
-      <p className="weather-card__temp">
-        {temp}°{tempUnit}
+      <p
+        className="weather-card__temp"
+        style={apiFailed ? { color: "#212121" } : {}}
+      >
+        {temp}
+        {!apiFailed ? `°${tempUnit}` : ``}
       </p>
     </div>
   );
