@@ -18,7 +18,7 @@ export function getItems() {
 
 export function postItem(data) {
   return fetch(baseUrl, {
-    method: "Post",
+    method: "POST",
     headers,
     body: JSON.stringify({
       ...data,
