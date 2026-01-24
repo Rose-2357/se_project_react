@@ -125,15 +125,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setWeatherCondition(getWeatherCondition(weatherData.temp.F));
-  }, [weatherData.temp.F]);
+    setWeatherCondition(getWeatherCondition(weatherData?.temp?.F));
+  }, [weatherData?.temp?.F]);
 
   useEffect(() => {
     setTempUnit(isTempUnitChecked ? "C" : "F");
   }, [isTempUnitChecked]);
 
-  if (Object.keys(weatherData).length === 0 || itemCards.length === 0)
-    return null;
+  if (Object.keys(weatherData).length === 0) return null;
 
   return (
     <BrowserRouter basename="/se_project_react/">
