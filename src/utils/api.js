@@ -9,7 +9,7 @@ function handleRes(res) {
 }
 
 function handleError(err) {
-  Promise.reject(err);
+  return Promise.reject(err);
 }
 
 export function getItems() {
