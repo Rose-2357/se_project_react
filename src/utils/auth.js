@@ -1,4 +1,10 @@
-import { baseUrl, headers, handleRes, handleError } from "./apiHelpers";
+import {
+  baseUrl,
+  headers,
+  handleRes,
+  handleError,
+  headerWithAuth,
+} from "./apiHelpers";
 
 export function signUp({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
@@ -23,6 +29,17 @@ export function login({ email, password }) {
       email,
       password,
     }),
+  })
+    .then(handleRes)
+    .then(({ token }) => {
+      localStorage.setItem("jwt", token);
+    })
+    .catch(handleError);
+}
+
+export function getCurrentUser() {
+  return fetch(`${baseUrl}/users/me`, {
+    headers: headerWithAuth(),
   })
     .then(handleRes)
     .catch(handleError);

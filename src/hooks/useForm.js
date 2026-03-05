@@ -28,7 +28,6 @@ export function useForm(defaultValues, additionalValidityFunctions = {}) {
   }
 
   function handleBlur(e) {
-    console.log("AAAA");
     checkValidity(
       e,
       errors,

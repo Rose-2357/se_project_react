@@ -1,4 +1,10 @@
-import { baseUrl, headers, handleRes, handleError } from "./apiHelpers";
+import {
+  baseUrl,
+  headers,
+  handleRes,
+  handleError,
+  headerWithAuth,
+} from "./apiHelpers";
 
 let itemsUrl = baseUrl + "/items";
 
@@ -9,7 +15,7 @@ export function getItems() {
 export function postItem(data) {
   return fetch(itemsUrl, {
     method: "POST",
-    headers,
+    headers: headerWithAuth(),
     body: JSON.stringify({
       ...data,
     }),
@@ -21,7 +27,7 @@ export function postItem(data) {
 export function deleteItem(id) {
   return fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
-    headers,
+    headers: headerWithAuth(),
   })
     .then(handleRes)
     .catch(handleError);

@@ -4,6 +4,16 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
+export const headerWithAuth = () => ({
+  ...headers,
+  Authorization: authorization(),
+});
+
+const authorization = () => {
+  const token = localStorage.getItem("jwt");
+  return `Bearer ${token}`;
+};
+
 export function handleRes(res) {
   return res.ok ? res.json() : Promise.reject(res.status);
 }
