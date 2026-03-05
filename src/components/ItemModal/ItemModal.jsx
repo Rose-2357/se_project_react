@@ -1,5 +1,7 @@
+import { useContext, useEffect } from "react";
 import useModalClose from "../../hooks/useModalClose";
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function ItemModal({
   card,
@@ -9,7 +11,12 @@ export default function ItemModal({
 }) {
   useModalClose(isOpen, handleCloseModal, "item-modal");
 
+  const currentUser = useContext(CurrentUserContext);
+
   if (!card) return null;
+
+  const isOwn = card.owner === currentUser._id;
+
   return (
     <div className={`item-modal ${isOpen ? "item-modal_is-open" : ""}`}>
       <div className="item-modal__content">
@@ -41,13 +48,15 @@ export default function ItemModal({
               Weather: {card.weather}
             </p>
           </div>
-          <button
-            className="item-modal__btn"
-            type="button"
-            onClick={handleDeleteClick}
-          >
-            Delete item
-          </button>
+          {isOwn && (
+            <button
+              className="item-modal__btn"
+              type="button"
+              onClick={handleDeleteClick}
+            >
+              Delete item
+            </button>
+          )}
         </div>
       </div>
     </div>

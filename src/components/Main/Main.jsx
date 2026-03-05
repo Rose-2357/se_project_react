@@ -24,7 +24,7 @@ export default function Main({ temp, weather, sunrise, sunset, apiFailed }) {
           ? `Today is ${temp}° ${tempUnit} / You may want to wear:`
           : `Your items:`}
       </p>
-      <ItemCards filtered={!apiFailed} />
+      <ItemCards filterWeather={!apiFailed} />
     </main>
   );
 }

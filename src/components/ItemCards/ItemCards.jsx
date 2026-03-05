@@ -5,7 +5,7 @@ import { WeatherConditionContext } from "../../contexts/WeatherConditionContext"
 import ItemCard from "../ItemCard/ItemCard";
 import "./ItemCards.css";
 
-export default function ItemCards({ filtered, customStyles }) {
+export default function ItemCards({ filterWeather, filterOwn, customStyles }) {
   const itemCards = useContext(ItemCardsContext);
   const handleCardClick = useContext(HandleCardClickContext);
   const weatherCondition = useContext(WeatherConditionContext);
@@ -15,7 +15,8 @@ export default function ItemCards({ filtered, customStyles }) {
       {itemCards.toReversed().map((item) => (
         <ItemCard
           key={item._id}
-          filtered={filtered}
+          filterWeather={filterWeather}
+          filterOwn={filterOwn}
           item={item}
           weatherCondition={weatherCondition}
         />

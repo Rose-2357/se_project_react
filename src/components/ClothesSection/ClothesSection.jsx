@@ -21,6 +21,7 @@ export default function ClothesSection() {
       </div>
       <div className="clothes__list-container">
         <ItemCards
+          filterOwn
           customStyles={{
             justifyContent: "inherit",
           }}

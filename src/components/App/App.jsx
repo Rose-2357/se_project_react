@@ -130,12 +130,7 @@ function App() {
     const itemCard = e.target.closest(".itemCard");
     if (!itemCard) return;
     setActiveModal("itemCard");
-    setSelectedCard({
-      _id: itemCard.getAttribute("data-id"),
-      name: itemCard.getAttribute("data-name"),
-      imageUrl: itemCard.getAttribute("data-imageUrl"),
-      weather: itemCard.getAttribute("data-weather"),
-    });
+    setSelectedCard(JSON.parse(itemCard.dataset.card));
   }
 
   useEffect(() => {
