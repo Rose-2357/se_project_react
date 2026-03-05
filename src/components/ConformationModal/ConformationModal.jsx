@@ -10,7 +10,7 @@ export default function ConformationModal({
   useModalClose(isOpen, handleCloseModal, "conformation-modal");
 
   function deleteCard(e) {
-    handleDeleteCard(e, parseInt(selectedCard._id));
+    handleDeleteCard(e, selectedCard._id);
   }
 
   return (

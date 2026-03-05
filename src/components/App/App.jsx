@@ -53,6 +53,8 @@ function App() {
 
   function handleDeleteCard(e, id) {
     e.preventDefault();
+    console.log(selectedCard);
+    console.log(id);
     deleteItem(id)
       .then(() => {
         setItemCards((prevItemCards) =>

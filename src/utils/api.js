@@ -25,7 +25,7 @@ export function postItem(data) {
 }
 
 export function deleteItem(id) {
-  return fetch(`${baseUrl}/${id}`, {
+  return fetch(`${itemsUrl}/${id}`, {
     method: "DELETE",
     headers: headerWithAuth(),
   })
