@@ -1,13 +1,16 @@
 import { useContext } from "react";
-import SideBarProfileImg from "../../assets/profile-img.svg";
 import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { DefaultAvatarContext } from "../../contexts/DefaultAvatarContext";
+import { HandleOpenEditProfileModalContext } from "../../contexts/HandleOpenEditProfileModalContext";
 
 export default function SideBar() {
   const currentUser = useContext(CurrentUserContext);
   const username = currentUser.name;
   const defaultAvatar = useContext(DefaultAvatarContext);
+  const handleOpenEditProfileModal = useContext(
+    HandleOpenEditProfileModalContext,
+  );
 
   return (
     <div className="side-bar">
@@ -39,8 +42,12 @@ export default function SideBar() {
         </div>
         <menu className="side-bar__btns">
           <li>
-            <button type="button" className="side-bar__btn">
-              Change profile data
+            <button
+              type="button"
+              className="side-bar__btn"
+              onClick={handleOpenEditProfileModal}
+            >
+              Edit profile
             </button>
           </li>
           <li>

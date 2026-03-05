@@ -32,3 +32,16 @@ export function deleteItem(id) {
     .then(handleRes)
     .catch(handleError);
 }
+
+export function editProfile({ name, avatar }) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: headerWithAuth(),
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  })
+    .then(handleRes)
+    .catch(handleError);
+}

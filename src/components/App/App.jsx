@@ -14,7 +14,7 @@ import { HandleCardClickContext } from "../../contexts/HandleCardClickContext";
 import { WeatherConditionContext } from "../../contexts/WeatherConditionContext";
 import { HandleOpenAddClothesModalContext } from "../../contexts/HandleOpenAddClothesModalContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { deleteItem, getItems, postItem } from "../../utils/api";
+import { deleteItem, editProfile, getItems, postItem } from "../../utils/api";
 import ConformationModal from "../ConformationModal/ConformationModal";
 import { errorImageLink } from "../../utils/constants";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -23,6 +23,8 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { DefaultAvatarContext } from "../../contexts/DefaultAvatarContext";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { HandleOpenEditProfileModalContext } from "../../contexts/HandleOpenEditProfileModalContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -55,6 +57,10 @@ function App() {
 
   function handleOpenConformationModal() {
     setActiveModal("conformationModal");
+  }
+
+  function handleOpenEditProfileModal() {
+    setActiveModal("editProfile");
   }
 
   function handleCloseModal() {
@@ -122,6 +128,25 @@ function App() {
     })
       .then(() => {
         handleLogin(formReseter);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  function handleSubmitEditProfileModal(e) {
+    e.preventDefault();
+    editProfile({
+      name: e.target.name.value,
+      avatar: e.target.avatar.value,
+    })
+      .then(() => {
+        setCurrentUser((prev) => ({
+          ...prev,
+          name: e.target.name.value,
+          avatar: e.target.avatar.value,
+        }));
+      })
+      .then(() => {
+        handleCloseModal();
       })
       .catch((err) => console.error(err));
   }
@@ -206,75 +231,84 @@ function App() {
                 <HandleOpenAddClothesModalContext.Provider
                   value={handleOpenAddClothesModal}
                 >
-                  <CurrentUserContext.Provider value={currentUser}>
-                    <DefaultAvatarContext.Provider value={defaultAvatar}>
-                      <div className="app">
-                        <div className="app__content">
-                          <Header
-                            city={weatherData.city}
-                            handleOpenAddClothesModal={
-                              handleOpenAddClothesModal
-                            }
-                            handleOpenRegisterModal={handleOpenRegisterModal}
-                            handleOpenLoginModal={handleOpenLoginModal}
-                            setDefaultAvatar={setDefaultAvatar}
-                            isLoggedIn={isLoggedIn}
-                          />
-                          <Routes>
-                            <Route
-                              path="/"
-                              element={
-                                <Main
-                                  weather={weatherData.weather}
-                                  temp={weatherData.temp}
-                                  sunrise={weatherData.sunrise}
-                                  sunset={weatherData.sunset}
-                                  apiFailed={apiFailed}
-                                />
+                  <HandleOpenEditProfileModalContext.Provider
+                    value={handleOpenEditProfileModal}
+                  >
+                    <CurrentUserContext.Provider value={currentUser}>
+                      <DefaultAvatarContext.Provider value={defaultAvatar}>
+                        <div className="app">
+                          <div className="app__content">
+                            <Header
+                              city={weatherData.city}
+                              handleOpenAddClothesModal={
+                                handleOpenAddClothesModal
                               }
+                              handleOpenRegisterModal={handleOpenRegisterModal}
+                              handleOpenLoginModal={handleOpenLoginModal}
+                              setDefaultAvatar={setDefaultAvatar}
+                              isLoggedIn={isLoggedIn}
                             />
-                            <Route
-                              path="/profile"
-                              element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                  <Profile />
-                                </ProtectedRoute>
-                              }
+                            <Routes>
+                              <Route
+                                path="/"
+                                element={
+                                  <Main
+                                    weather={weatherData.weather}
+                                    temp={weatherData.temp}
+                                    sunrise={weatherData.sunrise}
+                                    sunset={weatherData.sunset}
+                                    apiFailed={apiFailed}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/profile"
+                                element={
+                                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                    <Profile />
+                                  </ProtectedRoute>
+                                }
+                              />
+                            </Routes>
+                            <Footer />
+                            <AddItemModal
+                              handleCloseModal={handleCloseModal}
+                              onAddModal={handleSubmitAddClothes}
+                              isOpen={activeModal === "addClothes"}
                             />
-                          </Routes>
-                          <Footer />
-                          <AddItemModal
-                            handleCloseModal={handleCloseModal}
-                            onAddModal={handleSubmitAddClothes}
-                            isOpen={activeModal === "addClothes"}
-                          />
-                          <RegisterModal
-                            handleCloseModal={handleCloseModal}
-                            onRegisterModal={handleSubmitRegisterModal}
-                            isOpen={activeModal === "signUp"}
-                          />
-                          <LoginModal
-                            handleCloseModal={handleCloseModal}
-                            onLoginModal={handleSubmitLoginModal}
-                            isOpen={activeModal === "login"}
-                          />
+                            <RegisterModal
+                              handleCloseModal={handleCloseModal}
+                              onRegisterModal={handleSubmitRegisterModal}
+                              isOpen={activeModal === "signUp"}
+                            />
+                            <LoginModal
+                              handleCloseModal={handleCloseModal}
+                              onLoginModal={handleSubmitLoginModal}
+                              isOpen={activeModal === "login"}
+                            />
 
-                          <ItemModal
-                            card={selectedCard}
-                            isOpen={activeModal === "itemCard"}
-                            handleCloseModal={handleCloseModal}
-                            handleDeleteClick={handleOpenConformationModal}
-                          />
-                          <ConformationModal
-                            handleCloseModal={handleCloseModal}
-                            isOpen={activeModal === "conformationModal"}
-                            selectedCard={selectedCard}
-                            handleDeleteCard={handleDeleteCard}
-                          />
+                            <ItemModal
+                              card={selectedCard}
+                              isOpen={activeModal === "itemCard"}
+                              handleCloseModal={handleCloseModal}
+                              handleDeleteClick={handleOpenConformationModal}
+                            />
+                            <ConformationModal
+                              handleCloseModal={handleCloseModal}
+                              isOpen={activeModal === "conformationModal"}
+                              selectedCard={selectedCard}
+                              handleDeleteCard={handleDeleteCard}
+                            />
+                            <EditProfileModal
+                              handleCloseModal={handleCloseModal}
+                              onAddModal={handleSubmitEditProfileModal}
+                              isOpen={activeModal === "editProfile"}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </DefaultAvatarContext.Provider>
-                  </CurrentUserContext.Provider>
+                      </DefaultAvatarContext.Provider>
+                    </CurrentUserContext.Provider>
+                  </HandleOpenEditProfileModalContext.Provider>
                 </HandleOpenAddClothesModalContext.Provider>
               </WeatherConditionContext.Provider>
             </HandleCardClickContext.Provider>

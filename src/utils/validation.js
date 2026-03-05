@@ -4,7 +4,15 @@ export function checkValidity(
   setFunction,
   additionalFunction = null,
 ) {
-  if (!e.target.validity.valid) {
+  if (!e.target.required && e.target.value === "") {
+    setFunction({
+      ...defaultObject,
+      [e.target.name]: {
+        error: false,
+        message: "",
+      },
+    });
+  } else if (!e.target.validity.valid) {
     setFunction({
       ...defaultObject,
       [e.target.name]: {
@@ -36,6 +44,8 @@ export function displayValid(e, defaultObject, setFunction) {
 }
 
 export function checkImageValidity(e, defaultObject, setFunction) {
+  if (e.target.value === "") return true; // Image validity should not interfere with the required field validation
+
   const test = new Image();
   test.src = e.target.value;
 
