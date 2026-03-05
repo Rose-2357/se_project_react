@@ -43,6 +43,10 @@
   align-self: end;
 }
 
+.menu__btn_type_sign-up {
+  margin: 20px 0;
+}
+
 .menu__profile-info {
   display: flex;
   align-items: center;
@@ -63,6 +67,7 @@
 
 .menu__img-wrapper {
   margin: 0;
+  width: 40px;
 }
 
 .menu__btn_type_add-clothes {
@@ -72,7 +77,7 @@
   font-size: 20px;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
   .menu_is-open {
     transform: translateX(0);
     max-width: unset;

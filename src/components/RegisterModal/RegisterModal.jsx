@@ -78,7 +78,6 @@ export default function RegisterModal({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      {/* add name and avatar fields */}
       <label
         className={`modal__text ${errors.name.message !== "" ? "modal__text_state_error" : ""}`}
         htmlFor="sign-up-name"
@@ -92,6 +91,8 @@ export default function RegisterModal({
         id="sign-up-name"
         placeholder="Name"
         required
+        minLength="2"
+        maxLength="30"
         value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}

@@ -30,6 +30,8 @@
   margin: 20px 0;
   font-weight: 700;
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .side-bar__btns {
