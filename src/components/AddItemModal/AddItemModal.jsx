@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { checkImageValidity } from "../../utils/validation";
 import { useForm } from "../../hooks/useForm";

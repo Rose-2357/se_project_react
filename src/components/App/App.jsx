@@ -17,11 +17,14 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { deleteItem, getItems, postItem } from "../../utils/api";
 import ConformationModal from "../ConformationModal/ConformationModal";
 import { errorImageLink } from "../../utils/constants";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { login, signUp } from "../../utils/auth";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [itemCards, setItemCards] = useState([]);
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("signUp");
 
   const [selectedCard, setSelectedCard] = useState();
   const [weatherCondition, setWeatherCondition] = useState(
@@ -31,6 +34,7 @@ function App() {
   const [isTempUnitChecked, setIsTempUnitChecked] = useState(false);
   const [tempUnit, setTempUnit] = useState("F");
   const [apiFailed, setApiFailed] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleOpenAddClothesModal() {
     setActiveModal("addClothes");
@@ -70,6 +74,28 @@ function App() {
         handleCloseModal();
       })
       .catch((err) => console.error(err));
+  }
+
+  function handleSubmitRegisterModal(e, formReseter) {
+    e.preventDefault();
+    signUp({
+      name: e.target.name.value,
+      avatar: e.target.avatar.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+    })
+      .then(() => {
+        login({
+          email: e.target.email.value,
+          password: e.target.password.value,
+        });
+      })
+      .then(() => {
+        setIsLoggedIn(true);
+        formReseter();
+        handleCloseModal();
+      })
+      .catch((err) => console.error(JSON.stringify(err)));
   }
 
   function handleCardClick(e) {
@@ -165,7 +191,14 @@ function App() {
                             />
                           }
                         />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route
+                          path="/profile"
+                          element={
+                            <ProtectedRoute isLoggedIn={isLoggedIn}>
+                              <Profile />
+                            </ProtectedRoute>
+                          }
+                        />
                       </Routes>
                       <Footer />
                       <AddItemModal
@@ -173,6 +206,12 @@ function App() {
                         onAddModal={handleSubmitAddClothes}
                         isOpen={activeModal === "addClothes"}
                       />
+                      <RegisterModal
+                        handleCloseModal={handleCloseModal}
+                        onRegisterModal={handleSubmitRegisterModal}
+                        isOpen={activeModal === "signUp"}
+                      />
+
                       <ItemModal
                         card={selectedCard}
                         isOpen={activeModal === "itemCard"}

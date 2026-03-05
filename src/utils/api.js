@@ -1,23 +1,13 @@
-const baseUrl = "http://localhost:3001/items";
+import { baseUrl, headers, handleRes, handleError } from "./apiHelpers";
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
-function handleRes(res) {
-  return res.ok ? res.json() : Promise.reject(res.status);
-}
-
-function handleError(err) {
-  return Promise.reject(err);
-}
+let itemsUrl = baseUrl + "/items";
 
 export function getItems() {
-  return fetch(baseUrl).then(handleRes).catch(handleError);
+  return fetch(itemsUrl).then(handleRes).catch(handleError);
 }
 
 export function postItem(data) {
-  return fetch(baseUrl, {
+  return fetch(itemsUrl, {
     method: "POST",
     headers,
     body: JSON.stringify({

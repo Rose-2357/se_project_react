@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { checkValidity, displayValid } from "../utils/validation";
 
-export function useForm(defaultValues, additionalValidityFunctions) {
+export function useForm(defaultValues, additionalValidityFunctions = {}) {
   const defaultErrors = {};
   Object.keys(defaultValues).forEach((key) => {
     defaultErrors[key] = {
@@ -28,6 +28,7 @@ export function useForm(defaultValues, additionalValidityFunctions) {
   }
 
   function handleBlur(e) {
+    console.log("AAAA");
     checkValidity(
       e,
       errors,
