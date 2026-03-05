@@ -1,3 +1,6 @@
+import { useForm } from "../../hooks/useForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 export default function LoginModal({ handleCloseModal, onLoginModal, isOpen }) {
   function handleSubmit(e) {
     onLoginModal(e, resetForm);

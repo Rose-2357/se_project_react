@@ -20,11 +20,12 @@ import { errorImageLink } from "../../utils/constants";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { login, signUp } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [itemCards, setItemCards] = useState([]);
-  const [activeModal, setActiveModal] = useState("signUp");
+  const [activeModal, setActiveModal] = useState("login");
 
   const [selectedCard, setSelectedCard] = useState();
   const [weatherCondition, setWeatherCondition] = useState(
@@ -95,7 +96,21 @@ function App() {
         formReseter();
         handleCloseModal();
       })
-      .catch((err) => console.error(JSON.stringify(err)));
+      .catch((err) => console.error(err ));
+  }
+
+  function handleSubmitLoginModal(e, formReseter) {
+    e.preventDefault();
+    login({
+      email: e.target.email.value,
+      password: e.target.password.value,
+    })
+      .then(() => {
+        setIsLoggedIn(true);
+        formReseter();
+        handleCloseModal();
+      })
+      .catch((err) => console.error(err));
   }
 
   function handleCardClick(e) {
@@ -210,6 +225,11 @@ function App() {
                         handleCloseModal={handleCloseModal}
                         onRegisterModal={handleSubmitRegisterModal}
                         isOpen={activeModal === "signUp"}
+                      />
+                      <LoginModal
+                        handleCloseModal={handleCloseModal}
+                        onLoginModal={handleSubmitLoginModal}
+                        isOpen={activeModal === "login"}
                       />
 
                       <ItemModal
