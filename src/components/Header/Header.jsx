@@ -1,7 +1,6 @@
 import "./Header.css";
 import "./menu.css";
 import HeaderLogo from "../../assets/logo.svg";
-import HeaderProfileImg from "../../assets/profile-img.svg";
 import { useContext, useEffect, useState } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";

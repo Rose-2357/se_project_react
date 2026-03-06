@@ -1,10 +1,4 @@
-import {
-  baseUrl,
-  headers,
-  handleRes,
-  handleError,
-  headerWithAuth,
-} from "./apiHelpers";
+import { baseUrl, handleRes, handleError, headerWithAuth } from "./apiHelpers";
 
 let itemsUrl = baseUrl + "/items";
 
@@ -26,6 +20,24 @@ export function postItem(data) {
 
 export function deleteItem(id) {
   return fetch(`${itemsUrl}/${id}`, {
+    method: "DELETE",
+    headers: headerWithAuth(),
+  })
+    .then(handleRes)
+    .catch(handleError);
+}
+
+export function addLike(id) {
+  return fetch(`${itemsUrl}/${id}/likes`, {
+    method: "PUT",
+    headers: headerWithAuth(),
+  })
+    .then(handleRes)
+    .catch(handleError);
+}
+
+export function removeLike(id) {
+  return fetch(`${itemsUrl}/${id}/likes`, {
     method: "DELETE",
     headers: headerWithAuth(),
   })
