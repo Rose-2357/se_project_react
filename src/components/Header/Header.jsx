@@ -5,8 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { randomInt } from "../../utils/generalHelpers";
-import { use } from "react";
 import { DefaultAvatarContext } from "../../contexts/DefaultAvatarContext";
 
 export default function Header({
@@ -14,7 +12,6 @@ export default function Header({
   handleOpenAddClothesModal,
   handleOpenRegisterModal,
   handleOpenLoginModal,
-  setDefaultAvatar,
   isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleDateString("default", {
@@ -33,29 +30,6 @@ export default function Header({
   function handleClick(e) {
     if (e.target.classList.contains("menu_is-open")) setIsMobileMenuOpen(false);
   }
-
-  useEffect(() => {
-    setDefaultAvatar(
-      <svg viewBox="0 0 10 10">
-        <circle
-          cx="5"
-          cy="5"
-          r="5"
-          fill={`hsl(${randomInt(0, 360)}, 50%, 45%`}
-        ></circle>
-        <text
-          x="5"
-          y="5"
-          dominantBaseline="middle"
-          textAnchor="middle"
-          fill="#f9f9f9"
-          fontSize="5"
-        >
-          {currentUser?.name?.substring(0, 1)?.toUpperCase()}
-        </text>
-      </svg>,
-    );
-  }, []);
 
   const username = currentUser.name;
   const defaultAvatar = useContext(DefaultAvatarContext);

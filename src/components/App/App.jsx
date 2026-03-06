@@ -33,6 +33,9 @@ import { DefaultAvatarContext } from "../../contexts/DefaultAvatarContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { HandleOpenEditProfileModalContext } from "../../contexts/HandleOpenEditProfileModalContext";
 import { OnCardLikeContext } from "../../contexts/OnCardLikeContext";
+import { randomInt } from "../../utils/generalHelpers";
+import { use } from "react";
+import { IsLoggedInContext } from "../../contexts/IsLoggedInContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -50,6 +53,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [defaultAvatar, setDefaultAvatar] = useState();
+  const [defaultAvatarColor, setDefaultAvatarColor] = useState();
 
   function handleOpenAddClothesModal() {
     setActiveModal("addClothes");
@@ -236,110 +240,136 @@ function App() {
       setIsLoggedIn(true);
       setCurrentUser(user);
     });
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    setDefaultAvatarColor(`hsl(${randomInt(0, 360)}, 50%, 45%`);
   }, []);
+
+  useEffect(() => {
+    setDefaultAvatar(
+      <svg viewBox="0 0 10 10">
+        <circle cx="5" cy="5" r="5" fill={defaultAvatarColor}></circle>
+        <text
+          x="5"
+          y="5"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fill="#f9f9f9"
+          fontSize="5"
+        >
+          {currentUser?.name?.substring(0, 1)?.toUpperCase()}
+        </text>
+      </svg>,
+    );
+  }, [currentUser]);
 
   if (Object.keys(weatherData).length === 0) return null;
 
   return (
     <BrowserRouter basename="/se_project_react/">
-      <TempUnitStateContext.Provider
-        value={[isTempUnitChecked, setIsTempUnitChecked]}
-      >
-        <TempUnitContext.Provider value={tempUnit}>
-          <ItemCardsContext.Provider value={itemCards}>
-            <HandleCardClickContext.Provider value={handleCardClick}>
-              <WeatherConditionContext.Provider value={weatherCondition}>
-                <HandleOpenAddClothesModalContext.Provider
-                  value={handleOpenAddClothesModal}
-                >
-                  <HandleOpenEditProfileModalContext.Provider
-                    value={handleOpenEditProfileModal}
+      <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
+        <TempUnitStateContext.Provider
+          value={[isTempUnitChecked, setIsTempUnitChecked]}
+        >
+          <TempUnitContext.Provider value={tempUnit}>
+            <ItemCardsContext.Provider value={itemCards}>
+              <HandleCardClickContext.Provider value={handleCardClick}>
+                <WeatherConditionContext.Provider value={weatherCondition}>
+                  <HandleOpenAddClothesModalContext.Provider
+                    value={handleOpenAddClothesModal}
                   >
-                    <CurrentUserContext.Provider value={currentUser}>
-                      <DefaultAvatarContext.Provider value={defaultAvatar}>
-                        <OnCardLikeContext.Provider value={handleCardLike}>
-                          <div className="app">
-                            <div className="app__content">
-                              <Header
-                                city={weatherData.city}
-                                handleOpenAddClothesModal={
-                                  handleOpenAddClothesModal
-                                }
-                                handleOpenRegisterModal={
-                                  handleOpenRegisterModal
-                                }
-                                handleOpenLoginModal={handleOpenLoginModal}
-                                setDefaultAvatar={setDefaultAvatar}
-                                isLoggedIn={isLoggedIn}
-                              />
-                              <Routes>
-                                <Route
-                                  path="/"
-                                  element={
-                                    <Main
-                                      weather={weatherData.weather}
-                                      temp={weatherData.temp}
-                                      sunrise={weatherData.sunrise}
-                                      sunset={weatherData.sunset}
-                                      apiFailed={apiFailed}
-                                    />
+                    <HandleOpenEditProfileModalContext.Provider
+                      value={handleOpenEditProfileModal}
+                    >
+                      <CurrentUserContext.Provider value={currentUser}>
+                        <DefaultAvatarContext.Provider value={defaultAvatar}>
+                          <OnCardLikeContext.Provider value={handleCardLike}>
+                            <div className="app">
+                              <div className="app__content">
+                                <Header
+                                  city={weatherData.city}
+                                  handleOpenAddClothesModal={
+                                    handleOpenAddClothesModal
                                   }
-                                />
-                                <Route
-                                  path="/profile"
-                                  element={
-                                    <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                      <Profile />
-                                    </ProtectedRoute>
+                                  handleOpenRegisterModal={
+                                    handleOpenRegisterModal
                                   }
+                                  handleOpenLoginModal={handleOpenLoginModal}
+                                  setDefaultAvatar={setDefaultAvatar}
+                                  isLoggedIn={isLoggedIn}
                                 />
-                              </Routes>
-                              <Footer />
-                              <AddItemModal
-                                handleCloseModal={handleCloseModal}
-                                onAddModal={handleSubmitAddClothes}
-                                isOpen={activeModal === "addClothes"}
-                              />
-                              <RegisterModal
-                                handleCloseModal={handleCloseModal}
-                                onRegisterModal={handleSubmitRegisterModal}
-                                isOpen={activeModal === "signUp"}
-                              />
-                              <LoginModal
-                                handleCloseModal={handleCloseModal}
-                                onLoginModal={handleSubmitLoginModal}
-                                isOpen={activeModal === "login"}
-                              />
+                                <Routes>
+                                  <Route
+                                    path="/"
+                                    element={
+                                      <Main
+                                        weather={weatherData.weather}
+                                        temp={weatherData.temp}
+                                        sunrise={weatherData.sunrise}
+                                        sunset={weatherData.sunset}
+                                        apiFailed={apiFailed}
+                                      />
+                                    }
+                                  />
+                                  <Route
+                                    path="/profile"
+                                    element={
+                                      <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                        <Profile />
+                                      </ProtectedRoute>
+                                    }
+                                  />
+                                </Routes>
+                                <Footer />
+                                <AddItemModal
+                                  handleCloseModal={handleCloseModal}
+                                  onAddModal={handleSubmitAddClothes}
+                                  isOpen={activeModal === "addClothes"}
+                                />
+                                <RegisterModal
+                                  handleCloseModal={handleCloseModal}
+                                  onRegisterModal={handleSubmitRegisterModal}
+                                  isOpen={activeModal === "signUp"}
+                                />
+                                <LoginModal
+                                  handleCloseModal={handleCloseModal}
+                                  onLoginModal={handleSubmitLoginModal}
+                                  isOpen={activeModal === "login"}
+                                />
 
-                              <ItemModal
-                                card={selectedCard}
-                                isOpen={activeModal === "itemCard"}
-                                handleCloseModal={handleCloseModal}
-                                handleDeleteClick={handleOpenConformationModal}
-                              />
-                              <ConformationModal
-                                handleCloseModal={handleCloseModal}
-                                isOpen={activeModal === "conformationModal"}
-                                selectedCard={selectedCard}
-                                handleDeleteCard={handleDeleteCard}
-                              />
-                              <EditProfileModal
-                                handleCloseModal={handleCloseModal}
-                                onAddModal={handleSubmitEditProfileModal}
-                                isOpen={activeModal === "editProfile"}
-                              />
+                                <ItemModal
+                                  card={selectedCard}
+                                  isOpen={activeModal === "itemCard"}
+                                  handleCloseModal={handleCloseModal}
+                                  handleDeleteClick={
+                                    handleOpenConformationModal
+                                  }
+                                />
+                                <ConformationModal
+                                  handleCloseModal={handleCloseModal}
+                                  isOpen={activeModal === "conformationModal"}
+                                  selectedCard={selectedCard}
+                                  handleDeleteCard={handleDeleteCard}
+                                />
+                                <EditProfileModal
+                                  handleCloseModal={handleCloseModal}
+                                  onAddModal={handleSubmitEditProfileModal}
+                                  isOpen={activeModal === "editProfile"}
+                                />
+                              </div>
                             </div>
-                          </div>
-                        </OnCardLikeContext.Provider>
-                      </DefaultAvatarContext.Provider>
-                    </CurrentUserContext.Provider>
-                  </HandleOpenEditProfileModalContext.Provider>
-                </HandleOpenAddClothesModalContext.Provider>
-              </WeatherConditionContext.Provider>
-            </HandleCardClickContext.Provider>
-          </ItemCardsContext.Provider>
-        </TempUnitContext.Provider>
-      </TempUnitStateContext.Provider>
+                          </OnCardLikeContext.Provider>
+                        </DefaultAvatarContext.Provider>
+                      </CurrentUserContext.Provider>
+                    </HandleOpenEditProfileModalContext.Provider>
+                  </HandleOpenAddClothesModalContext.Provider>
+                </WeatherConditionContext.Provider>
+              </HandleCardClickContext.Provider>
+            </ItemCardsContext.Provider>
+          </TempUnitContext.Provider>
+        </TempUnitStateContext.Provider>
+      </IsLoggedInContext.Provider>
     </BrowserRouter>
   );
 }

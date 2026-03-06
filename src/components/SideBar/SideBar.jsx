@@ -3,6 +3,8 @@ import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { DefaultAvatarContext } from "../../contexts/DefaultAvatarContext";
 import { HandleOpenEditProfileModalContext } from "../../contexts/HandleOpenEditProfileModalContext";
+import { useNavigate } from "react-router-dom";
+import { IsLoggedInContext } from "../../contexts/IsLoggedInContext";
 
 export default function SideBar() {
   const currentUser = useContext(CurrentUserContext);
@@ -11,6 +13,14 @@ export default function SideBar() {
   const handleOpenEditProfileModal = useContext(
     HandleOpenEditProfileModalContext,
   );
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedInContext);
+
+  function handleLogOut() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+  }
 
   return (
     <div className="side-bar">
@@ -51,7 +61,11 @@ export default function SideBar() {
             </button>
           </li>
           <li>
-            <button type="button" className="side-bar__btn">
+            <button
+              type="button"
+              className="side-bar__btn"
+              onClick={handleLogOut}
+            >
               Log out
             </button>
           </li>
