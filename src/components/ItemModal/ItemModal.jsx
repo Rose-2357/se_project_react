@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import useModalClose from "../../hooks/useModalClose";
 import "./ItemModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { use } from "react";
+import { IsLoggedInContext } from "../../contexts/IsLoggedInContext";
 
 export default function ItemModal({
   card,
@@ -12,6 +14,7 @@ export default function ItemModal({
   useModalClose(isOpen, handleCloseModal, "item-modal");
 
   const currentUser = useContext(CurrentUserContext);
+  const [isLoggedIn] = useContext(IsLoggedInContext);
 
   if (!card) return null;
 
@@ -48,7 +51,7 @@ export default function ItemModal({
               Weather: {card.weather}
             </p>
           </div>
-          {isOwn && (
+          {isOwn && isLoggedIn && (
             <button
               className="item-modal__btn"
               type="button"
