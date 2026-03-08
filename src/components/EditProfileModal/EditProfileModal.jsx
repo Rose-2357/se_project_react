@@ -3,6 +3,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { checkImageValidity } from "../../utils/validation";
+import { use } from "react";
 
 export default function EditProfileModal({
   handleCloseModal,
@@ -11,16 +12,23 @@ export default function EditProfileModal({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const { values, handleChange, errors, setErrors, handleBlur, resetForm } =
-    useForm(
-      {
-        name: currentUser.name,
-        avatar: currentUser.avatar,
-      },
-      {
-        avatar: checkImageValidity,
-      },
-    );
+  const {
+    values,
+    setValues,
+    handleChange,
+    errors,
+    setErrors,
+    handleBlur,
+    resetForm,
+  } = useForm(
+    {
+      name: "",
+      avatar: "",
+    },
+    {
+      avatar: checkImageValidity,
+    },
+  );
 
   useEffect(() => {
     setErrors((prev) => ({
@@ -31,6 +39,15 @@ export default function EditProfileModal({
       },
     }));
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setValues({
+        name: currentUser?.name,
+        avatar: currentUser?.avatar,
+      });
+    }
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     onAddModal(e);
