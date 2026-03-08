@@ -34,7 +34,6 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { HandleOpenEditProfileModalContext } from "../../contexts/HandleOpenEditProfileModalContext";
 import { OnCardLikeContext } from "../../contexts/OnCardLikeContext";
 import { randomInt } from "../../utils/generalHelpers";
-import { use } from "react";
 import { IsLoggedInContext } from "../../contexts/IsLoggedInContext";
 
 function App() {
@@ -121,7 +120,7 @@ function App() {
       password: e.target.password.value,
     })
       .then(() => {
-        login({
+        return login({
           email: e.target.email.value,
           password: e.target.password.value,
         });
