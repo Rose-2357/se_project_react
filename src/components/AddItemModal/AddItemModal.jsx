@@ -7,7 +7,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
     {
       name: "",
       image: "",
-      "weather-type": "",
+      weatherType: "",
     },
     {
       image: checkImageValidity,
@@ -28,7 +28,7 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
       validationDependencies={[
         errors.name,
         errors.image,
-        errors["weather-type"],
+        errors.weatherType,
       ]}
       handleSubmit={handleSubmit}
     >
@@ -93,10 +93,10 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             value="hot"
             className="modal__input modal__input_type_radio"
             type="radio"
-            name="weather-type"
+            name="weatherType"
             id="add-clothes-hot"
             required
-            checked={values["weather-type"] === "hot" ? "checked" : ""}
+            checked={values.weatherType === "hot" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label
@@ -111,9 +111,9 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             value="warm"
             className="modal__input modal__input_type_radio"
             type="radio"
-            name="weather-type"
+            name="weatherType"
             id="add-clothes-warm"
-            checked={values["weather-type"] === "warm" ? "checked" : ""}
+            checked={values.weatherType === "warm" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label
@@ -128,9 +128,9 @@ export default function AddItemModal({ handleCloseModal, onAddModal, isOpen }) {
             value="cold"
             className="modal__input modal__input_type_radio"
             type="radio"
-            name="weather-type"
+            name="weatherType"
             id="add-clothes-cold"
-            checked={values["weather-type"] === "cold" ? "checked" : ""}
+            checked={values.weatherType === "cold" ? "checked" : ""}
           />
           <span className="modal__radio-input-clone" />
           <label

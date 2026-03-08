@@ -97,7 +97,7 @@ function App() {
     postItem({
       name: e.target.name.value,
       imageUrl: e.target.image.value,
-      weather: e.target["weather-type"].value,
+      weather: e.target.weatherType.value,
     })
       .then((newItem) => {
         setItemCards([...itemCards, newItem]);
