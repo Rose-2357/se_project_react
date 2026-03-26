@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Rose-2357.github.io/se_project_react/",
+  "homepage": "https://http://rose-ghaffari-wtwr.privatedns.org",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && scp -r ./dist/* aradsystem995@rose-ghaffari-wtwr.privatedns.org:/home/aradsystem995/frontend",
     "lint": "eslint .",
     "preview": "vite preview",
     "initServer": "json-server --watch db.json --id _id --port 3001"
