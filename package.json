@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://http://rose-ghaffari-wtwr.privatedns.org",
+  "homepage": "https://rose-ghaffari-wtwr.privatedns.org",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",

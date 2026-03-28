@@ -266,7 +266,7 @@ function App() {
   if (Object.keys(weatherData).length === 0) return null;
 
   return (
-    <BrowserRouter basename="/se_project_react/">
+    <BrowserRouter basename="/">
       <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
         <TempUnitStateContext.Provider
           value={[isTempUnitChecked, setIsTempUnitChecked]}
@@ -336,7 +336,6 @@ function App() {
                                   onLoginModal={handleSubmitLoginModal}
                                   isOpen={activeModal === "login"}
                                 />
-
                                 <ItemModal
                                   card={selectedCard}
                                   isOpen={activeModal === "itemCard"}
