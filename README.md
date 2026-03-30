@@ -34,9 +34,9 @@ A web application that suggests clothisg based on the weather
 
 - [Project 11: WTWR Part 2](https://drive.google.com/file/d/1bzrinxRrLOaGW-oyHfHTgyJOdz6pkshi/view?usp=drive_link)
 
-# GitHib pages
+# Deployed project
 
-[See WTWR on GitHub pages](https://rose-2357.github.io/se_project_react/)
+[See WTWR demo here](https://www.rose-ghaffari-wtwr.privatedns.org/)
 
 # Backend
 
