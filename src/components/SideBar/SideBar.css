@@ -1,6 +1,7 @@
 .side-bar {
   padding: 0;
   width: 346px;
+  min-height: calc(100vh - 370px);
 }
 
 .side-bar__content {
